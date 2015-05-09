@@ -11,4 +11,18 @@ public class ApplicationState {
     public static boolean gameIsActive = false;
     public static Set<String> nearProducts = new HashSet<>();
 
+    private static int currentRiddle;
+
+
+    public static void nextRiddle(){
+        currentRiddle++;
+    }
+
+    public static String getCurrentRiddle() {
+        return "Riddle " + currentRiddle;
+    }
+
+    public static boolean existsNextRiddle(){
+        return currentRiddle<3;
+    }
 }

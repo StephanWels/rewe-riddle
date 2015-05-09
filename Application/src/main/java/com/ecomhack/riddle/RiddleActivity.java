@@ -8,16 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.ecomhack.riddle.activityinterfaces.Riddle;
 import com.example.android.basicnotifications.R;
 
 
-public class RiddleActivity extends Activity implements Riddle {
+public class RiddleActivity extends Activity {
 
     private static final String TAG = "Riddle";
 
     private final String productToFind = "Product White";
-
 
 
     @Override
@@ -28,28 +26,22 @@ public class RiddleActivity extends Activity implements Riddle {
 
     public void checkWhetherCorrect(View view) {
         Log.i("riddle", "Am I right?");
-        if (ApplicationState.nearProducts.contains(productToFind)){
+        if (ApplicationState.nearProducts.contains(productToFind)) {
             Log.i("riddle", "YES!");
-            Intent intent = new Intent(this, CorrectActivity.class);
-            startActivity(intent);
+            if (ApplicationState.existsNextRiddle()) {
+                ApplicationState.nextRiddle();
+                Intent intent = new Intent(this, CorrectActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, WinActivity.class);
+                startActivity(intent);
+            }
+
         } else {
             Log.i("riddle", "NO!");
+            Intent intent = new Intent(this, LoseActivity.class);
+            startActivity(intent);
         }
     }
 
-    @Override
-    public void setTitle(String title) {
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(title);
-    }
-
-    @Override
-    public void setBody(String body) {
-
-    }
-
-    @Override
-    public void setReward(String reward) {
-
-    }
 }

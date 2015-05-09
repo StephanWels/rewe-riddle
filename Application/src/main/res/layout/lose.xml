@@ -61,7 +61,7 @@
             android:background="#ff9230"
             android:textColor="#ffff"
             android:layout_gravity="center_horizontal"
-            android:onClick="startBreakfastChallenge"
+            android:onClick="end"
             android:layout_marginTop="20dp" /><![CDATA[
 
 
