@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.ecomhack.riddle.estimote.EstimoteService;
+import com.ecomhack.riddle.sound.SoundTask;
 
 /**
  * Created by stephanwels1 on 09.05.15.
@@ -19,22 +20,7 @@ public class WinActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter == null) {
-            // Device does not support Bluetooth
-        } else {
-            if (!mBluetoothAdapter.isEnabled()) {
-                // Bluetooth is not enable
-                Intent btIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                btIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getApplicationContext().startActivity(btIntent);
-            } else {
-                // Bluetooth is already enabled
-                getApplicationContext().startService(new Intent(getApplicationContext(),
-                        EstimoteService.class));
-            }
-        }
+        new SoundTask(getApplicationContext(),R.raw.correct).execute();
     }
 
     @Override
