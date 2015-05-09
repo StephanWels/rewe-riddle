@@ -13,7 +13,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.ecomhack.riddle.ApplicationState;
-import com.ecomhack.riddle.SphereActivity;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
@@ -91,7 +90,7 @@ public class EstimoteManager {
 
     // Pops a notification in the task bar
     public void postNotificationIntent(String title, String msg, Intent i) {
-        final Intent intent = new Intent(currentContext, SphereActivity.class);
+        final Intent intent = new Intent(currentContext, EstimoteManager.class);
         intent.setAction(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         PendingIntent pendingIntent = PendingIntent.getActivity(currentContext, 0, intent, 0);

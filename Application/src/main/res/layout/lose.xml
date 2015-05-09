@@ -21,7 +21,7 @@
         <ImageView
             android:layout_width="273dp"
             android:layout_height="149dp"
-            android:id="@+id/imageView3"
+            android:id="@+id/losseImage"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/youlose"
             android:layout_marginTop="30dp"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="You didn&apos;t earn any points!"
-            android:id="@+id/textView2"
+            android:id="@+id/losseMessage"
             android:textColor="#4C4A4C"
             android:layout_gravity="center_horizontal" />
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="What you want to do?"
-            android:id="@+id/textView7"
+            android:id="@+id/tryAgainQuestion"
             android:layout_marginTop="25dp"
             android:textColor="#4C4A4C"
             android:layout_marginLeft="25dp"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Try again"
-            android:id="@+id/button7"
+            android:id="@+id/tryAgainButton"
             android:background="#ff9230"
             android:textColor="#ffff"
             android:layout_gravity="center_horizontal"

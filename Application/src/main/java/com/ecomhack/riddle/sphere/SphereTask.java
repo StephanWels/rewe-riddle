@@ -25,7 +25,7 @@ public class SphereTask extends AsyncTask<URL, Integer, Long> {
     private static final String SPHERE_USER_PASSWORD = SPHERE_USER + ":" + SPHERE_PASSWORD;
     private static final String SPHERE_AUTH_SCOPE = "grant_type=client_credentials&scope=manage_project:rewe-riddle-2";
 
-    private static final String TAG = "SphereActivity";
+    private static final String TAG = "SphereTask";
 
     protected Long doInBackground(URL... urls) {
 
