@@ -1,6 +1,7 @@
 package com.ecomhack.riddle;
 
 import android.app.Activity;
+import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,7 +38,6 @@ public class StartActivity extends Activity {
                         EstimoteService.class));
             }
         }
-
     }
 
     @Override
@@ -48,6 +48,7 @@ public class StartActivity extends Activity {
 
     public void startBreakfastChallenge(View view) {
         Log.i("riddle", "start breakfast");
+        ApplicationState.gameIsActive=true;
         Intent intent = new Intent(this, RiddleActivity.class);
         startActivity(intent);
     }

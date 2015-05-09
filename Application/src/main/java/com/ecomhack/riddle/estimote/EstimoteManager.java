@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.ecomhack.riddle.ApplicationState;
 import com.ecomhack.riddle.SphereActivity;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
@@ -54,8 +55,10 @@ public class EstimoteManager {
                 @Override
                 public void onEnteredRegion(Region region, List<Beacon> beacons) {
                     Log.i("riddle", "found registration beacon.");
-                    postNotificationIntent("Play with us!",
-                            "Tap to start the REWE RIDDLE", i);
+                    if (!ApplicationState.gameIsActive){
+                        postNotificationIntent("Play with us!",
+                                "Tap to start the REWE RIDDLE", i);
+                    }
                 }
 
                 // ... far away from us.

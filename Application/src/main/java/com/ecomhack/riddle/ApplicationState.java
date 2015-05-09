@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by stephanwels1 on 09.05.15.
+ * Android documentation says, it's fine to keep the state in static variables :)
  */
 public class ApplicationState {
-    // Android documentation says, it's fine to keep the state in static variables :)
+
+    public static boolean gameIsActive = false;
     public static Set<String> nearProducts = new HashSet<>();
+
 }
