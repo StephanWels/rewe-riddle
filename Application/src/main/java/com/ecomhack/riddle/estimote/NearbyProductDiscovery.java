@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.ecomhack.riddle.ConstantsStateKeys;
+import com.ecomhack.riddle.ApplicationState;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.Utils;
 
@@ -54,11 +54,7 @@ public class NearbyProductDiscovery {
 
     private void storeNearProducts(Set<String> nearProducts) {
         Log.d("riddle", "Nearby Products: " + nearProducts.toString());
-
-        SharedPreferences pref = context.getSharedPreferences("MyPref", 0); // 0 - for private mode
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putStringSet(ConstantsStateKeys.KEY_NEAR_PRODUCTS, nearProducts);
-        editor.commit(); // commit changes
+        ApplicationState.nearProducts = nearProducts;
     }
 
     public void close(){
