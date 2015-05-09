@@ -31,6 +31,7 @@ public class EstimoteManager {
     public static void Create(NotificationManager notificationMngr,
                               Context context, final Intent i) {
         try {
+            System.out.println("Creating Manager");
             notificationManager = notificationMngr;
             currentContext = context;
 

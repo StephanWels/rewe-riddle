@@ -52,14 +52,4 @@
         <service android:name=".EstimoteService" />
     </application>
 
-    <action
-        android:name=".EstimoteService"
-        application=""
-        gt=""
-        intent-filter=""
-        lt=""
-        receiver=""
-        service=""
-        android:exported="false"></action>
-
 </manifest>

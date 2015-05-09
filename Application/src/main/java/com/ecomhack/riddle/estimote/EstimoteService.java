@@ -9,11 +9,15 @@ import android.os.IBinder;
 public class EstimoteService extends Service {
     @Override
     public IBinder onBind(Intent arg0) {
+
+        System.out.println("On bind");
         return null;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+        System.out.println("onStartCommand");
         try {
             EstimoteManager.Create((NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE), this, intent);
         } catch (Exception e) {
