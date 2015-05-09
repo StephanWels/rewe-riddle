@@ -45,13 +45,18 @@
         <service android:name="com.ecomhack.riddle.estimote.EstimoteService" />
 
         <activity
-            android:name="com.ecomhack.riddle.sphere.SphereActivity"
+            android:name="com.ecomhack.riddle.StartActivity"
             android:label="@string/title_activity_sphere" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.ecomhack.riddle.RiddleActivity"
+            android:label="@string/title_activity_sphere" >
         </activity>
     </application>
 

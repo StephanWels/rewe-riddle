@@ -17,6 +17,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:nestedScrollingEnabled="false"
-        android:onClick="callSphere" />
+        android:onClick="checkWhetherCorrect" />
 
 </RelativeLayout>
