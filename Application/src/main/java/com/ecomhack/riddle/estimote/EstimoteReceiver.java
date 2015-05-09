@@ -21,7 +21,6 @@ public class EstimoteReceiver extends BroadcastReceiver {
                     ERROR);
             switch (state) {
                 case STATE_TURNING_OFF:
-                    System.out.println("Bluetooth turned off - stop looking for estimotes");
                     // When bluetooth is turning off, lets stop estimotes ranging
                     if (estimoteServiceIntent != null) {
                         context.stopService(estimoteServiceIntent);
@@ -29,7 +28,6 @@ public class EstimoteReceiver extends BroadcastReceiver {
                     }
                     break;
                 case STATE_ON:
-                    System.out.println("Bluetooth turned on - start looking for estimotes");
                     // When bluethooth is turned on, let's start estimotes monitoring
                     if (estimoteServiceIntent == null) {
                         estimoteServiceIntent = new Intent(context,

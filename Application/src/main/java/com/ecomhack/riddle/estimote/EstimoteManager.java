@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
@@ -18,10 +19,12 @@ import com.example.android.basicnotifications.R;
 
 
 public class EstimoteManager {
+
     private static final int NOTIFICATION_ID = 123;
     private static BeaconManager beaconManager;
     private static NotificationManager notificationManager;
-    private static final Region ALL_ESTIMOTE_BEACONS = new Region("regionId", null, null, null);
+    private static final int REGISTRATION_REGION_MAJOR=25140;
+    private static final Region REGISTRATION_REGION = new Region("registration_region", null, REGISTRATION_REGION_MAJOR, null);
 
     private static Context currentContext;
 
@@ -29,7 +32,6 @@ public class EstimoteManager {
     public static void Create(NotificationManager notificationMngr,
                               Context context, final Intent i) {
         try {
-            System.out.println("Creating Manager");
             notificationManager = notificationMngr;
             currentContext = context;
 
@@ -45,15 +47,15 @@ public class EstimoteManager {
                 // ... close to us.
                 @Override
                 public void onEnteredRegion(Region region, List<Beacon> beacons) {
-                    postNotificationIntent("Estimote testing",
-                            "I have found an estimote !!!", i);
+                    Log.i("riddle", "found registration beacon.");
+                    postNotificationIntent("Rewe Riddle Game",
+                            "Play with us!", i);
                 }
 
                 // ... far away from us.
                 @Override
                 public void onExitedRegion(Region region) {
-                    postNotificationIntent("Estimote testing",
-                            "I have lost my estimote !!!", i);
+                    // NOOP
                 }
             });
 
@@ -63,7 +65,7 @@ public class EstimoteManager {
                 public void onServiceReady() {
                     try {
                         // ... and start the monitoring
-                        beaconManager.startMonitoring(ALL_ESTIMOTE_BEACONS);
+                        beaconManager.startMonitoring(REGISTRATION_REGION);
                     } catch (Exception e) {
                     }
                 }
@@ -90,7 +92,7 @@ public class EstimoteManager {
     // Stop beacons monitoring, and closes the service
     public static void stop() {
         try {
-            beaconManager.stopMonitoring(ALL_ESTIMOTE_BEACONS);
+            beaconManager.stopMonitoring(REGISTRATION_REGION);
             beaconManager.disconnect();
         } catch (Exception e) {
         }

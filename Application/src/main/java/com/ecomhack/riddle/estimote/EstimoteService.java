@@ -5,19 +5,17 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 public class EstimoteService extends Service {
     @Override
     public IBinder onBind(Intent arg0) {
-
-        System.out.println("On bind");
         return null;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        System.out.println("onStartCommand");
+        Log.i("riddle", "Starting estimote service.");
         try {
             EstimoteManager.Create((NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE), this, intent);
         } catch (Exception e) {
@@ -27,6 +25,7 @@ public class EstimoteService extends Service {
 
     @Override
     public void onDestroy() {
+        Log.i("riddle", "Stopping estimote service.");
         super.onDestroy();
         EstimoteManager.stop();
     }
