@@ -46,7 +46,9 @@
 
         <activity
             android:name="com.ecomhack.riddle.StartActivity"
-            android:label="@string/title_activity_sphere" >
+            android:label="@string/title_activity_sphere"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,7 +58,9 @@
 
         <activity
             android:name="com.ecomhack.riddle.RiddleActivity"
-            android:label="@string/title_activity_sphere" >
+            android:label="@string/title_activity_sphere"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
