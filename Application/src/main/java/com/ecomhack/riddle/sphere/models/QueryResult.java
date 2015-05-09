@@ -1,4 +1,4 @@
-package com.ecomhack.riddle.models;
+package com.ecomhack.riddle.sphere.models;
 
 import java.util.List;
 

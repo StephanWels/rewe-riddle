@@ -8,10 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.ecomhack.riddle.ConstantsStateKeys;
-import com.ecomhack.riddle.models.AuthResponse;
-import com.ecomhack.riddle.models.Challenge;
-import com.ecomhack.riddle.models.QueryResult;
+import com.ecomhack.riddle.sphere.models.AuthResponse;
+import com.ecomhack.riddle.sphere.models.Challenge;
+import com.ecomhack.riddle.sphere.models.QueryResult;
 import com.ecomhack.riddle.sphere.SphereAuthenticationTask;
 import com.ecomhack.riddle.sphere.SphereChallengeQueryTask;
 import com.example.android.basicnotifications.R;

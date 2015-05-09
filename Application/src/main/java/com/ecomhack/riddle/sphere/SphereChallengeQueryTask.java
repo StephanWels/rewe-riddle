@@ -2,8 +2,8 @@ package com.ecomhack.riddle.sphere;
 
 import java.lang.reflect.Type;
 
-import com.ecomhack.riddle.models.Challenge;
-import com.ecomhack.riddle.models.QueryResult;
+import com.ecomhack.riddle.sphere.models.Challenge;
+import com.ecomhack.riddle.sphere.models.QueryResult;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.reflect.TypeToken;
 
 public class SphereChallengeQueryTask extends SphereQueryTask<QueryResult<Challenge>> {

@@ -1,4 +1,4 @@
-package com.ecomhack.riddle.models;
+package com.ecomhack.riddle.sphere.models;
 
 public class Challenge {
     private String id;

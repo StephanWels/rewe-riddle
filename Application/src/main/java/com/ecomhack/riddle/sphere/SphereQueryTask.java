@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.lang.reflect.Type;
-import com.ecomhack.riddle.models.AuthResponse;
-import com.ecomhack.riddle.models.QueryResult;
+import com.ecomhack.riddle.sphere.models.AuthResponse;
+import com.ecomhack.riddle.sphere.models.QueryResult;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 
 import org.springframework.http.HttpEntity;
