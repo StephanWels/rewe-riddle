@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.ecomhack.riddle.estimote.EstimoteReceiver;
 import com.ecomhack.riddle.estimote.EstimoteService;
-import com.example.android.basicnotifications.R;
+import com.ecomhack.riddle.R;
+
 
 /**
  * Created by stephanwels1 on 09.05.15.

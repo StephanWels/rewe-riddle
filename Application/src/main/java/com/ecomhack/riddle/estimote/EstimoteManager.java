@@ -18,9 +18,7 @@ import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
 import com.estimote.sdk.BeaconManager.MonitoringListener;
-import com.example.android.basicnotifications.R;
-
-
+import com.ecomhack.riddle.R;
 
 public class EstimoteManager {
 
