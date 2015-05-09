@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.ecomhack.riddle.R;
+import com.ecomhack.riddle.sound.SoundTask;
 
 public class RiddleActivity extends Activity {
 
@@ -36,6 +37,7 @@ public class RiddleActivity extends Activity {
             Log.i("riddle", "NO!");
             Intent intent = new Intent(this, LoseActivity.class);
             startActivity(intent);
+            new SoundTask(getApplicationContext(),R.raw.wrong).execute();
         }
     }
 }
