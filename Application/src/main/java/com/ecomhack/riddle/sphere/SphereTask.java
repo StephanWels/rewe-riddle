@@ -6,6 +6,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.ecomhack.riddle.authentication.AuthResponse;
+import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -49,6 +50,7 @@ public class SphereTask extends AsyncTask<URL, Integer, Long> {
 
         String result = restTemplate.postForObject(url, entity, String.class);
 
+        new Gson().fromJson(result, AuthResponse.class);
 
         Log.v(TAG, "testing" + result);
 
