@@ -1,3 +1,4 @@
+/*
 package com.ecomhack.riddle.estimote;
 
 import java.util.List;
@@ -16,9 +17,7 @@ import com.estimote.sdk.BeaconManager.MonitoringListener;
 import com.example.android.basicnotifications.R;
 
 
-/**
- * Created by stephanwels1 on 09.05.15.
- */
+
 public class EstimoteManager {
     private static final int NOTIFICATION_ID = 123;
     private static BeaconManager beaconManager;
@@ -98,3 +97,4 @@ public class EstimoteManager {
         }
     }
 }
+*/
