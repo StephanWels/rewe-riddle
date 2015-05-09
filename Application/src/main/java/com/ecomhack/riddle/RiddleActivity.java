@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import com.ecomhack.riddle.R;
+import android.widget.TextView;
+
 import com.ecomhack.riddle.sound.SoundTask;
 
 public class RiddleActivity extends Activity {
@@ -14,10 +15,14 @@ public class RiddleActivity extends Activity {
 
     private final String productToFind = "Product White";
 
+    TextView riddleHeaderText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.riddle1);
+        riddleHeaderText =  (TextView)findViewById(R.id.riddleHeader);
+        riddleHeaderText.setText(ApplicationState.getCurrentRiddle());
     }
 
     public void checkWhetherCorrect(View view) {

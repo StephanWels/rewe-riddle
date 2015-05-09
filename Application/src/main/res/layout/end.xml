@@ -21,7 +21,7 @@
         <ImageView
             android:layout_width="468dp"
             android:layout_height="234dp"
-            android:id="@+id/imageView3"
+            android:id="@+id/winningImage"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/youwin" />
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="You earned 100 points!"
-            android:id="@+id/textView2"
+            android:id="@+id/winningPoints"
             android:textColor="#4C4A4C"
             android:layout_gravity="center_horizontal" />
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="You got 5% Discount in your purchase!"
-            android:id="@+id/textView7"
+            android:id="@+id/winningDiscountText"
             android:layout_marginTop="25dp"
             android:textColor="#4C4A4C"
             android:layout_marginLeft="25dp"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Show this code at Checkout"
-            android:id="@+id/textView8"
+            android:id="@+id/winningDiscountExplain"
             android:textColor="#4C4A4C"
             android:layout_gravity="center_horizontal" />
 
@@ -63,7 +63,7 @@
         <ImageView
             android:layout_width="160dp"
             android:layout_height="160dp"
-            android:id="@+id/imageView2"
+            android:id="@+id/winningQRCode"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/qrcode"
             android:layout_marginTop="5dp" />

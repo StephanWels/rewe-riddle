@@ -16,7 +16,7 @@ import com.ecomhack.riddle.sphere.models.AuthResponse;
 import com.ecomhack.riddle.sphere.models.Challenge;
 import com.ecomhack.riddle.sphere.models.Product;
 import com.ecomhack.riddle.sphere.models.QueryResult;
-import com.example.android.basicnotifications.R;
+import com.ecomhack.riddle.R;
 
 import java.util.concurrent.ExecutionException;
 

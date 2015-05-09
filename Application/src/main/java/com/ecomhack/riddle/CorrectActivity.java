@@ -51,7 +51,7 @@ public class CorrectActivity extends Activity {
     }
 
     public void setPicture(final URL url) {
-        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) findViewById(R.id.correctImage);
 
         new DownloadImageTask(imageView)
                 .execute("https://d9gkwhfwam31p.cloudfront.net/8750254/1326950_lightbox.png");
