@@ -8,6 +8,7 @@ import java.util.Set;
  */
 public class ApplicationState {
 
+
     private static boolean gameIsActive = false;
 
     private static Set<String> nearProducts = new HashSet<>();
@@ -47,4 +48,5 @@ public class ApplicationState {
     public static void setGameIsActive(boolean value) {
         gameIsActive = value;
     }
+
 }
