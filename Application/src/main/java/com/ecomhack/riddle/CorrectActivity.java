@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.ecomhack.riddle.DownloadImageTask;
 import com.ecomhack.riddle.R;
+import com.ecomhack.riddle.sound.SoundTask;
 
 import java.net.URL;
 
@@ -21,6 +22,7 @@ public class CorrectActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.correct);
+        new SoundTask(getApplicationContext(),R.raw.correct);
     }
 
     @Override
