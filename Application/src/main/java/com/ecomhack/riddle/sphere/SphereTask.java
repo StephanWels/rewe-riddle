@@ -8,7 +8,10 @@ import android.util.Log;
 import com.ecomhack.riddle.authentication.AuthResponse;
 
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -32,18 +35,19 @@ public class SphereTask extends AsyncTask<URL, Integer, Long> {
 // Create a new RestTemplate instance
             RestTemplate restTemplate = new RestTemplate();
 
-// Add the String message converter
-            restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+
+
 
 // Make the HTTP GET request, marshaling the response to a String
         final String basicAuth = "Basic " + Base64.encodeToString(SPHERE_USER_PASSWORD.getBytes(), Base64.NO_WRAP);
 
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-        headers.add("Authorization", basicAuth);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        headers.add("Authorization",basicAuth );
+        HttpEntity<String> entity = new HttpEntity<String>(SPHERE_AUTH_SCOPE, headers);
 
-        HttpEntity<String> request = new HttpEntity<String>(SPHERE_AUTH_SCOPE, headers);
-
-        AuthResponse result = restTemplate.postForObject(url, request, AuthResponse.class);
+        String result = restTemplate.postForObject(url, entity, String.class);
 
 
         Log.v(TAG, "testing" + result);

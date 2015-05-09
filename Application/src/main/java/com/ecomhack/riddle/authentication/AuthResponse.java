@@ -1,6 +1,8 @@
 package com.ecomhack.riddle.authentication;
 
-public class AuthResponse {
+import java.io.Serializable;
+
+public class AuthResponse implements Serializable {
 
     private String accessToken;
     private String tokenType;
