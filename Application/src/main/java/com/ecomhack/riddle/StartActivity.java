@@ -43,18 +43,6 @@ public class StartActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            AuthResponse authResponse = new SphereAuthenticationTask().execute(null, null).get();
-            QueryResult<Challenge> challenges = new SphereChallengeQueryTask(authResponse).execute().get();
-            for (Challenge challenge : challenges.getResults()) {
-                QueryResult<Product> products = new SphereProductQueryTask(authResponse, challenge.getId()).execute().get();
-            }
-        } catch (ExecutionException | InterruptedException e) {
-            Log.e("riddle", "Could not fetch data from SPHERE.IO", e);
-        }
-        // TODO Send challenges info to view
-        // TODO Send auth response to clicked challenge
-        // TODO Do the query result in the corresponding place
         setContentView(R.layout.start);
     }
 
