@@ -5,12 +5,10 @@ import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
 
-import com.ecomhack.riddle.Authentication.AuthResponse;
 import com.ecomhack.riddle.authentication.AuthResponse;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
