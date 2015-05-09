@@ -1,21 +1,10 @@
 package com.ecomhack.riddle;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import com.ecomhack.riddle.sphere.models.AuthResponse;
-import com.ecomhack.riddle.sphere.models.Challenge;
-import com.ecomhack.riddle.sphere.models.QueryResult;
-import com.ecomhack.riddle.sphere.SphereAuthenticationTask;
-import com.ecomhack.riddle.sphere.SphereChallengeQueryTask;
 import com.ecomhack.riddle.R;
-
-import java.util.concurrent.ExecutionException;
 
 public class SphereActivity extends Activity {
 
@@ -47,10 +36,5 @@ public class SphereActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void callSphere(View view) throws ExecutionException, InterruptedException {
-        AuthResponse authResponse = new SphereAuthenticationTask().execute().get();
-        QueryResult<QueryResult<Challenge>> challenges = new SphereChallengeQueryTask().execute(authResponse).get();
     }
 }
