@@ -8,8 +8,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.ecomhack.riddle.sphere.SphereActivity;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
@@ -48,8 +51,8 @@ public class EstimoteManager {
                 @Override
                 public void onEnteredRegion(Region region, List<Beacon> beacons) {
                     Log.i("riddle", "found registration beacon.");
-                    postNotificationIntent("Rewe Riddle Game",
-                            "Play with us!", i);
+                    postNotificationIntent("Play with us!",
+                            "Tap to start the REWE RIDDLE", i);
                 }
 
                 // ... far away from us.
@@ -76,17 +79,22 @@ public class EstimoteManager {
 
     // Pops a notification in the task bar
     public static void postNotificationIntent(String title, String msg, Intent i) {
-        i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivities(
-                currentContext, 0, new Intent[]{i},
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification notification = new Notification.Builder(currentContext)
-                .setSmallIcon(R.drawable.ic_launcher).setContentTitle(title)
-                .setContentText(msg).setAutoCancel(true)
-                .setContentIntent(pendingIntent).build();
+        final Intent intent = new Intent(currentContext, SphereActivity.class);
+        intent.setAction(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        PendingIntent pendingIntent = PendingIntent.getActivity(currentContext, 0, intent, 0);
+        Notification notification = new NotificationCompat.Builder(currentContext)
+            .setSmallIcon(R.drawable.ic_stat_notification)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .setLargeIcon(BitmapFactory.decodeResource(currentContext.getResources(), R.drawable.ic_launcher))
+            .setContentTitle("Play with us!")
+            .setContentText("Tap to start the REWE RIDDLE")
+            .setSubText("").build();
         notification.defaults |= Notification.DEFAULT_SOUND;
         notification.defaults |= Notification.DEFAULT_LIGHTS;
         notificationManager.notify(NOTIFICATION_ID, notification);
+
     }
 
     // Stop beacons monitoring, and closes the service
