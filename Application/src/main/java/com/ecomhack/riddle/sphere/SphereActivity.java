@@ -1,11 +1,14 @@
 package com.ecomhack.riddle.sphere;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ecomhack.riddle.ConstantsStateKeys;
 import com.example.android.basicnotifications.R;
 
 public class SphereActivity extends Activity {
@@ -41,7 +44,14 @@ public class SphereActivity extends Activity {
     }
 
     public void callSphere(View view) {
-        new SphereTask().execute(null, null, null);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        SharedPreferences.Editor editor = pref.edit();
 
+        int score =  pref.getInt(ConstantsStateKeys.KEY_SCORE, 0);
+        Log.i("riddle", "Score: " + score);
+        editor.putInt(ConstantsStateKeys.KEY_SCORE, score + 100);
+        editor.commit(); // commit changes
+
+        // new SphereTask().execute(null, null, null);
     }
 }

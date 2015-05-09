@@ -28,6 +28,7 @@ public class EstimoteManager {
     private static NotificationManager notificationManager;
     private static final int REGISTRATION_REGION_MAJOR=25140;
     private static final Region REGISTRATION_REGION = new Region("registration_region", null, REGISTRATION_REGION_MAJOR, null);
+    private static final Region ALL_ESTIMOTE_BEACONS = new Region("all_beacons", null, null, null);
 
     private static Context currentContext;
 
@@ -62,6 +63,14 @@ public class EstimoteManager {
                 }
             });
 
+            final NearbyProductDiscovery nearbyProductDiscovery = new NearbyProductDiscovery(currentContext);
+            beaconManager.setRangingListener(new BeaconManager.RangingListener() {
+                @Override
+                public void onBeaconsDiscovered(Region region, List<Beacon> list) {
+                    nearbyProductDiscovery.discoverProducts(list);
+                }
+            });
+
             // Connect to the beacon manager...
             beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
                 @Override
@@ -69,6 +78,7 @@ public class EstimoteManager {
                     try {
                         // ... and start the monitoring
                         beaconManager.startMonitoring(REGISTRATION_REGION);
+                        beaconManager.startRanging(ALL_ESTIMOTE_BEACONS);
                     } catch (Exception e) {
                     }
                 }
