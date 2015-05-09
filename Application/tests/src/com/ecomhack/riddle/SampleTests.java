@@ -13,9 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.example.android.basicnotifications.tests;
-
-import com.example.android.basicnotifications.*;
+package com.ecomhack.riddle;
 
 import android.test.ActivityInstrumentationTestCase2;
 

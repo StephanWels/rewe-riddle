@@ -48,7 +48,10 @@ android {
         androidTest.java.srcDirs = ['tests/src']
 
     }
+}
 
+dependencies {
+    compile(name:'estimote-sdk-preview', ext:'aar')
 }
 
 
