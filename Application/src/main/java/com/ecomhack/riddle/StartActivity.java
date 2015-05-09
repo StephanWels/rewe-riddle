@@ -16,7 +16,7 @@ import com.example.android.basicnotifications.R;
  */
 public class StartActivity extends Activity {
 
-        private static final String TAG = "start";
+    private static final String TAG = "start";
 
     @Override
     protected void onStart() {
@@ -41,13 +41,14 @@ public class StartActivity extends Activity {
     }
 
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.start);
-        }
-        public void startBreakfastChallenge(View view){
-            Log.i("riddle", "start breakfast");
-            Intent intent = new Intent(this, RiddleActivity.class);
-            startActivity(intent);
-        }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.start);
+    }
+
+    public void startBreakfastChallenge(View view) {
+        Log.i("riddle", "start breakfast");
+        Intent intent = new Intent(this, RiddleActivity.class);
+        startActivity(intent);
+    }
 }

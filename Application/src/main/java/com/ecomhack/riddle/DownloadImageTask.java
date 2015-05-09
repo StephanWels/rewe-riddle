@@ -1,4 +1,4 @@
-package com.ecomhack.riddle.imagedownloader;
+package com.ecomhack.riddle;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

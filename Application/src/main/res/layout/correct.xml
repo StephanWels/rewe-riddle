@@ -69,7 +69,8 @@
             android:background="#ff9230"
             android:textColor="#ffff"
             android:layout_marginTop="25dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="nextRiddle" />
 
     </LinearLayout>
 

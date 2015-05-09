@@ -1,6 +1,7 @@
 package com.ecomhack.riddle;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ public class RiddleActivity extends Activity {
     private final String productToFind = "Product White";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class RiddleActivity extends Activity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         if (pref.getStringSet(KEY_NEAR_PRODUCTS, new HashSet<String>()).contains(productToFind)){
             Log.i("riddle", "YES!");
+            Intent intent = new Intent(this, CorrectActivity.class);
+            startActivity(intent);
         } else {
             Log.i("riddle", "NO!");
         }

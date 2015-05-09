@@ -58,7 +58,7 @@ public class SphereActivity extends Activity {
         editor.putInt(ConstantsStateKeys.KEY_SCORE, score + 100);
         editor.commit(); // commit changes
 
-        AuthResponse authResponse = new SphereAuthenticationTask().execute(null, null).get();
+        AuthResponse authResponse = new SphereAuthenticationTask().execute().get();
         QueryResult<QueryResult<Challenge>> challenges = new SphereChallengeQueryTask().execute(authResponse).get();
     }
 }

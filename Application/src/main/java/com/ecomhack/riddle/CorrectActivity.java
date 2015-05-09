@@ -1,16 +1,15 @@
-package com.ecomhack.riddle.correct;
+package com.ecomhack.riddle;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
+import android.view.View;
 import android.widget.ImageView;
 
-import com.ecomhack.riddle.imagedownloader.DownloadImageTask;
 import com.example.android.basicnotifications.R;
 
 import java.net.URL;
@@ -60,5 +59,10 @@ public class CorrectActivity extends Activity {
 
     }
 
+    public void nextRiddle(View view) {
+        Log.i("riddle", "next riddle");
+        Intent intent = new Intent(this, RiddleActivity.class);
+        startActivity(intent);
+    }
 
 }
