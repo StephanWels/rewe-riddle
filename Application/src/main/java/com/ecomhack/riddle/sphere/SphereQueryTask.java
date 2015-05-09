@@ -5,7 +5,6 @@ import android.util.Log;
 
 import java.lang.reflect.Type;
 import com.ecomhack.riddle.sphere.models.AuthResponse;
-import com.ecomhack.riddle.sphere.models.QueryResult;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 
 import org.springframework.http.HttpEntity;
@@ -16,8 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-public abstract class SphereQueryTask<T> extends AsyncTask<AuthResponse, Integer, QueryResult<T>> {
+public abstract class SphereQueryTask<T> extends AsyncTask<Void, Integer, T> {
     private static final String SPHERE_API_URL = "https://api.sphere.io/rewe-riddle-2/";
+    private final AuthResponse authResponse;
+
+    public SphereQueryTask(AuthResponse authResponse) {
+        this.authResponse = authResponse;
+    }
 
     abstract String tag();
 
@@ -26,10 +30,10 @@ public abstract class SphereQueryTask<T> extends AsyncTask<AuthResponse, Integer
     abstract Type type();
 
     @Override
-    protected QueryResult<T> doInBackground(AuthResponse... authResponses) {
-        Log.v(tag(), "Starting request with " + authResponses[0]);
+    protected T doInBackground(Void... voids) {
+        Log.v(tag(), "Starting request with " + authResponse);
         String url = SPHERE_API_URL + endpoint();
-        HttpEntity<String> requestEntity = requestEntity(authResponses[0]);
+        HttpEntity<String> requestEntity = requestEntity(authResponse);
         ResponseEntity<String> result = restTemplate().exchange(url, HttpMethod.GET, requestEntity, String.class);
         Log.v(tag(), result.getBody());
         return new Gson().fromJson(result.getBody(), type());
@@ -53,7 +57,7 @@ public abstract class SphereQueryTask<T> extends AsyncTask<AuthResponse, Integer
         Log.v(tag(), progress[0].toString());
     }
 
-    protected void onPostExecute(QueryResult<T> result) {
+    protected void onPostExecute(T result) {
         Log.v(tag(), result.toString());
     }
 }
