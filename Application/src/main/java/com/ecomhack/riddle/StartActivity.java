@@ -12,9 +12,7 @@ import com.ecomhack.riddle.estimote.EstimoteService;
 import com.ecomhack.riddle.R;
 
 
-/**
- * Created by stephanwels1 on 09.05.15.
- */
+
 public class StartActivity extends Activity {
 
     private static final String TAG = "start";
@@ -48,7 +46,9 @@ public class StartActivity extends Activity {
 
     public void startBreakfastChallenge(View view) {
         Log.i("riddle", "start breakfast");
+
         ApplicationState.startNewGame();
+
         Intent intent = new Intent(this, RiddleActivity.class);
         startActivity(intent);
     }
