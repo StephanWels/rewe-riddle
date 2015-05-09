@@ -11,13 +11,14 @@ import java.net.URL;
 
 public class SoundTask extends AsyncTask<URL, Integer, Long> {
 
-    private static final String TAG = "TetrisTask";
+    private static final String TAG = "SoundTask";
 
     private Context applicationContext;
     private int resource;
 
     public SoundTask(Context applicationContext, int ressource) {
         this.applicationContext = applicationContext;
+        this.resource = ressource;
     }
 
 
