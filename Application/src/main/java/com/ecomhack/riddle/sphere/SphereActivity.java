@@ -9,7 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ecomhack.riddle.ConstantsStateKeys;
+import com.ecomhack.riddle.models.AuthResponse;
+import com.ecomhack.riddle.models.Challenge;
+import com.ecomhack.riddle.models.QueryResult;
 import com.example.android.basicnotifications.R;
+
+import java.util.concurrent.ExecutionException;
 
 public class SphereActivity extends Activity {
 
@@ -43,7 +48,7 @@ public class SphereActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void callSphere(View view) {
+    public void callSphere(View view) throws ExecutionException, InterruptedException {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         SharedPreferences.Editor editor = pref.edit();
 
@@ -52,6 +57,7 @@ public class SphereActivity extends Activity {
         editor.putInt(ConstantsStateKeys.KEY_SCORE, score + 100);
         editor.commit(); // commit changes
 
-        new SphereTask().execute(null, null, null);
+        AuthResponse authResponse = new SphereAuthenticationTask().execute(null, null).get();
+        QueryResult<QueryResult<Challenge>> challenges = new SphereChallengeQueryTask().execute(authResponse).get();
     }
 }
