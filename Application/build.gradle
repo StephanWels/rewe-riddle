@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'http://repo.spring.io/milestone'
+        }
     }
 
     dependencies {
@@ -21,6 +24,7 @@ dependencies {
     compile "com.android.support:support-v4:21.0.2"
     compile "com.android.support:gridlayout-v7:21.0.2"
     compile "com.android.support:cardview-v7:21.0.2"
+    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M1'
 }
 
 // The sample build uses multiple directories to
@@ -51,10 +55,14 @@ android {
         androidTest.java.srcDirs = ['tests/src']
 
     }
+    packagingOptions {
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+    }
 }
 
 dependencies {
-    compile(name:'estimote-sdk-preview', ext:'aar')
+//    compile(name:'estimote-sdk-preview', ext:'aar')
 }
 
 

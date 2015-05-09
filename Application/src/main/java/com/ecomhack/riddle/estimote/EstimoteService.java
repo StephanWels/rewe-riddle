@@ -1,3 +1,4 @@
+/*
 package com.ecomhack.riddle.estimote;
 
 import android.bluetooth.BluetoothClass;
@@ -27,3 +28,4 @@ public class EstimoteService extends BluetoothClass.Service {
   <b>EstimoteManager.stop();</b>
  }
 }
+*/

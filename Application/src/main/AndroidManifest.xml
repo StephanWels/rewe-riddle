@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  Copyright 2013 The Android Open Source Project
 
@@ -14,38 +14,57 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.basicnotifications"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <!-- Min/target SDK versions (<uses-sdk>) managed by build.gradle -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <action
+        android:name=".EstimoteService"
+        application=""
+        gt=""
+        intent-filter=""
+        lt=""
+        receiver=""
+        service=""
+        android:exported="false" >
+    </action>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.ecomhack.riddle.MainActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            android:label="@string/app_name" >
+
         </activity>
+
         <receiver android:name="com.ecomhack.riddle.estimote.EstimoteReceiver" >
             <intent-filter>
                 <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
             </intent-filter>
         </receiver>
-    </application>
 
-    <action android:exported="false" android:name=".EstimoteService" application="" gt="" intent-filter="" lt="" receiver="" service="">
-    </action>
+        <activity
+            android:name="com.ecomhack.riddle.sphere.SphereActivity"
+            android:label="@string/title_activity_sphere" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

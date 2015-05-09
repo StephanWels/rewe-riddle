@@ -1,3 +1,4 @@
+/*
 package com.ecomhack.riddle.estimote;
 
 import android.content.BroadcastReceiver;
@@ -36,3 +37,4 @@ public class EstimoteReceiver extends BroadcastReceiver {
   }
  }
 }
+*/

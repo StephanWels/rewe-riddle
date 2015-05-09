@@ -32,5 +32,9 @@ limitations under the License.
         advantage of the expanded notification format in newer versions of Android, and
         falls back gracefully to a reduced set of functionality on earlier versions.
     </string>
+    <string name="title_activity_sphere">SphereActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
