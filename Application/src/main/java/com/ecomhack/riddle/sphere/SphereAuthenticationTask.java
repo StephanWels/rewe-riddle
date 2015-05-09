@@ -15,9 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.URL;
-
-public class SphereAuthenticationTask extends AsyncTask<URL, Integer, AuthResponse> {
+public class SphereAuthenticationTask extends AsyncTask<Void, Integer, AuthResponse> {
     private static final String TAG = SphereAuthenticationTask.class.getSimpleName();
 
     private static final String SPHERE_USER = "il1AWMhTtKeBoTsldA-r31GX";
@@ -27,7 +25,7 @@ public class SphereAuthenticationTask extends AsyncTask<URL, Integer, AuthRespon
     private static final String SPHERE_AUTH_URL = "https://auth.sphere.io/oauth/token";
     private static final String SPHERE_AUTH_SCOPE = "grant_type=client_credentials&scope=manage_project:rewe-riddle-2";
 
-    protected AuthResponse doInBackground(URL... urls) {
+    protected AuthResponse doInBackground(Void... voids) {
         Log.v(TAG, "Starting auth request");
         ResponseEntity<String> result = restTemplate().exchange(SPHERE_AUTH_URL, HttpMethod.POST, httpEntityAuth(), String.class);
         return new Gson().fromJson(result.getBody(), AuthResponse.class);

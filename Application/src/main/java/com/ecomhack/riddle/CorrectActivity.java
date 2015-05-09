@@ -22,7 +22,7 @@ public class CorrectActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.correct);
-        new SoundTask(getApplicationContext(),R.raw.correct);
+        new SoundTask(getApplicationContext(),R.raw.correct).execute();
     }
 
     @Override
