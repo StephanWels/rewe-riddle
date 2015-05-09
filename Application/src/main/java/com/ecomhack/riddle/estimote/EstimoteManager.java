@@ -12,7 +12,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.ecomhack.riddle.sphere.SphereActivity;
+import com.ecomhack.riddle.SphereActivity;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;

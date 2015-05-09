@@ -1,4 +1,4 @@
-package com.ecomhack.riddle.sphere;
+package com.ecomhack.riddle;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -12,6 +12,8 @@ import com.ecomhack.riddle.ConstantsStateKeys;
 import com.ecomhack.riddle.models.AuthResponse;
 import com.ecomhack.riddle.models.Challenge;
 import com.ecomhack.riddle.models.QueryResult;
+import com.ecomhack.riddle.sphere.SphereAuthenticationTask;
+import com.ecomhack.riddle.sphere.SphereChallengeQueryTask;
 import com.example.android.basicnotifications.R;
 
 import java.util.concurrent.ExecutionException;
