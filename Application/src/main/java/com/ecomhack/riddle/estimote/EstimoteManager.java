@@ -12,7 +12,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.ecomhack.riddle.sphere.SphereActivity;
+import com.ecomhack.riddle.SphereActivity;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
@@ -29,15 +29,17 @@ public class EstimoteManager {
     private static final int REGISTRATION_REGION_MAJOR=25140;
     private static final Region REGISTRATION_REGION = new Region("registration_region", null, REGISTRATION_REGION_MAJOR, null);
     private static final Region ALL_ESTIMOTE_BEACONS = new Region("all_beacons", null, null, null);
+    private  final NearbyProductDiscovery nearbyProductDiscovery;
 
     private static Context currentContext;
 
     // Create everything we need to monitor the beacons
-    public static void Create(NotificationManager notificationMngr,
+    public EstimoteManager(NotificationManager notificationMngr,
                               Context context, final Intent i) {
+        notificationManager = notificationMngr;
+        currentContext = context;
+        nearbyProductDiscovery = new NearbyProductDiscovery(currentContext);
         try {
-            notificationManager = notificationMngr;
-            currentContext = context;
 
             // Create a beacon manager
             beaconManager = new BeaconManager(currentContext);
@@ -63,7 +65,6 @@ public class EstimoteManager {
                 }
             });
 
-            final NearbyProductDiscovery nearbyProductDiscovery = new NearbyProductDiscovery(currentContext);
             beaconManager.setRangingListener(new BeaconManager.RangingListener() {
                 @Override
                 public void onBeaconsDiscovered(Region region, List<Beacon> list) {
@@ -88,7 +89,7 @@ public class EstimoteManager {
     }
 
     // Pops a notification in the task bar
-    public static void postNotificationIntent(String title, String msg, Intent i) {
+    public void postNotificationIntent(String title, String msg, Intent i) {
         final Intent intent = new Intent(currentContext, SphereActivity.class);
         intent.setAction(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -108,11 +109,16 @@ public class EstimoteManager {
     }
 
     // Stop beacons monitoring, and closes the service
-    public static void stop() {
+    public void stop() {
+        Log.i("riddle", "Stopping estimote manager.");
         try {
+            if (nearbyProductDiscovery != null){
+                nearbyProductDiscovery.close();
+            }
             beaconManager.stopMonitoring(REGISTRATION_REGION);
             beaconManager.disconnect();
         } catch (Exception e) {
+            Log.e("riddle","Error during Estimote manager shutdown.", e);
         }
     }
 }

@@ -34,6 +34,7 @@ public class NearbyProductDiscovery {
 
     public NearbyProductDiscovery(final Context context){
         this.context = Objects.requireNonNull(context, "context must not be null");
+        storeNearProducts(new HashSet<String>());
     }
 
     public void discoverProducts(List<Beacon> nearbyBeacons){
@@ -58,5 +59,9 @@ public class NearbyProductDiscovery {
         SharedPreferences.Editor editor = pref.edit();
         editor.putStringSet(ConstantsStateKeys.KEY_NEAR_PRODUCTS, nearProducts);
         editor.commit(); // commit changes
+    }
+
+    public void close(){
+        storeNearProducts(new HashSet<String>());
     }
 }

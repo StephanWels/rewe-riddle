@@ -4,14 +4,10 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-import com.ecomhack.riddle.sphere.SphereTask;
 import com.example.android.basicnotifications.R;
 
-import java.util.Collections;
 import java.util.HashSet;
 
 import static com.ecomhack.riddle.ConstantsStateKeys.*;
