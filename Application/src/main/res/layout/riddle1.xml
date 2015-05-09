@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="= 100 pts"
+            android:text="Reward points: 100"
             android:id="@+id/textView4"
             android:layout_marginTop="25dp"
             android:textColor="#4C4A4C"
@@ -55,7 +55,7 @@
         <Button
             android:layout_width="144dp"
             android:layout_height="wrap_content"
-            android:text="Answer"
+            android:text="I&apos;m here!"
             android:id="@+id/button4"
             android:focusableInTouchMode="false"
             android:textColor="#ffffff"
