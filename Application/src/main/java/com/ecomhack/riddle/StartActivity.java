@@ -14,9 +14,7 @@ import com.ecomhack.riddle.R;
 
 
 public class StartActivity extends Activity {
-
-    private static final String TAG = "start";
-
+    
     @Override
     protected void onStart() {
         super.onStart();

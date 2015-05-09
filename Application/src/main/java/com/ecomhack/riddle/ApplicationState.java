@@ -14,10 +14,12 @@ public class ApplicationState {
     private static Set<String> nearProducts = new HashSet<>();
 
     private static int currentRiddle = 0;
+    private static int numberTriesLeft = 3;
 
 
     public static void nextRiddle(){
         currentRiddle++;
+        numberTriesLeft=3;
     }
 
     public static String getCurrentRiddle() {
@@ -31,6 +33,7 @@ public class ApplicationState {
     public static void startNewGame() {
         gameIsActive=true;
         currentRiddle=0;
+        numberTriesLeft=3;
     }
 
     public static void setNearProducts(Set<String> value) {
@@ -49,4 +52,15 @@ public class ApplicationState {
         gameIsActive = value;
     }
 
+    public static void wrongAnswer() {
+        numberTriesLeft--;
+    }
+
+    public static boolean hasTriesLeft() {
+        return numberTriesLeft>0;
+    }
+
+    public static int getNumberTriesLeft() {
+        return numberTriesLeft;
+    }
 }

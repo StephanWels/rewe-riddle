@@ -1,6 +1,8 @@
 package com.ecomhack.riddle;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,8 +10,6 @@ import android.view.View;
 import com.ecomhack.riddle.R;
 
 public class RiddleActivity extends Activity {
-
-    private static final String TAG = "Riddle";
 
     private final String productToFind = "Product White";
 
@@ -34,8 +34,30 @@ public class RiddleActivity extends Activity {
 
         } else {
             Log.i("riddle", "NO!");
-            Intent intent = new Intent(this, LoseActivity.class);
-            startActivity(intent);
+            ApplicationState.wrongAnswer();
+            Log.i("riddle", ApplicationState.getNumberTriesLeft() + " tries left");
+            if (ApplicationState.hasTriesLeft()){
+                int triesLeft = ApplicationState.getNumberTriesLeft();
+                new AlertDialog.Builder(this)
+                        .setTitle("Nope!")
+                        .setMessage("I cannot see the correct product beacon - You are not close enough :(. You have " + triesLeft + " tries left.")
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            } else {
+                Intent intent = new Intent(this, LoseActivity.class);
+                startActivity(intent);
+            }
         }
     }
 }
