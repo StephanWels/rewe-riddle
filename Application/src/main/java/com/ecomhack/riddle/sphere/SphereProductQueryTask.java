@@ -23,7 +23,7 @@ public class SphereProductQueryTask extends SphereQueryTask<QueryResult<Product>
 
     @Override
     String endpoint() {
-        return "product-projections/search?filter.query=categories.id:\"" + challengeId + "\"";
+        return "product-projections/search?staged=true&filter.query=categories.id:\"" + challengeId + "\"";
     }
 
     @Override

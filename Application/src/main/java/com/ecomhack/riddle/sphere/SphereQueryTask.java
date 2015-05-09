@@ -5,7 +5,10 @@ import android.util.Log;
 
 import java.lang.reflect.Type;
 import com.ecomhack.riddle.sphere.models.AuthResponse;
+import com.ecomhack.riddle.sphere.models.Variant;
+import com.ecomhack.riddle.sphere.models.VariantDeserializer;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
+import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.GsonBuilder;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -36,7 +39,7 @@ public abstract class SphereQueryTask<T> extends AsyncTask<Void, Integer, T> {
         HttpEntity<String> requestEntity = requestEntity(authResponse);
         ResponseEntity<String> result = restTemplate().exchange(url, HttpMethod.GET, requestEntity, String.class);
         Log.v(tag(), result.getBody());
-        return new Gson().fromJson(result.getBody(), type());
+        return gson().fromJson(result.getBody(), type());
     }
 
     private HttpEntity<String> requestEntity(AuthResponse authResponse) {
@@ -51,6 +54,12 @@ public abstract class SphereQueryTask<T> extends AsyncTask<Void, Integer, T> {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
         return restTemplate;
+    }
+
+    private Gson gson() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Variant.class, new VariantDeserializer());
+        return gsonBuilder.create();
     }
 
     protected void onProgressUpdate(Integer... progress) {
