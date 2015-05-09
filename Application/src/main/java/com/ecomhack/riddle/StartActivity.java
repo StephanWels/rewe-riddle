@@ -16,8 +16,6 @@ import com.ecomhack.riddle.sphere.models.AuthResponse;
 import com.ecomhack.riddle.sphere.models.Challenge;
 import com.ecomhack.riddle.sphere.models.Product;
 import com.ecomhack.riddle.sphere.models.QueryResult;
-import com.example.android.basicnotifications.R;
-
 import java.util.concurrent.ExecutionException;
 
 public class StartActivity extends Activity {
@@ -52,7 +50,7 @@ public class StartActivity extends Activity {
                 QueryResult<Product> products = new SphereProductQueryTask(authResponse, challenge.getId()).execute().get();
             }
         } catch (ExecutionException | InterruptedException e) {
-            Log.e(TAG, "Could not fetch data from SPHERE.IO", e);
+            Log.e("riddle", "Could not fetch data from SPHERE.IO", e);
         }
         // TODO Send challenges info to view
         // TODO Send auth response to clicked challenge

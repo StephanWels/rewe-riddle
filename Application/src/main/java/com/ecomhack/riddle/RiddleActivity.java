@@ -35,8 +35,6 @@ public class RiddleActivity extends Activity {
 
         } else {
             Log.i("riddle", "NO!");
-            Intent intent = new Intent(this, LoseActivity.class);
-            startActivity(intent);
             new SoundTask(getApplicationContext(),R.raw.wrong).execute();
             ApplicationState.wrongAnswer();
             Log.i("riddle", ApplicationState.getNumberTriesLeft() + " tries left");
