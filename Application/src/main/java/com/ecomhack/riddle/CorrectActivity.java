@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.ecomhack.riddle.imagedownloader.DownloadImageTask;
+import com.ecomhack.riddle.DownloadImageTask;
 import com.ecomhack.riddle.R;
 
 import java.net.URL;

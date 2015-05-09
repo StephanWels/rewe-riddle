@@ -16,7 +16,6 @@ public class RiddleActivity extends Activity {
 
     private final String productToFind = "Product White";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,4 +42,22 @@ public class RiddleActivity extends Activity {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+    public void setTitle(String title) {
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(title);
+    }
+
+
+    public void setBody(String body) {
+
+    }
+
+
+    public void setReward(String reward) {
+
+    }
+>>>>>>> merge stuff
 }
