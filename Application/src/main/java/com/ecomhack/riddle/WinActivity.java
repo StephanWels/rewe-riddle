@@ -43,7 +43,7 @@ public class WinActivity extends Activity {
         setContentView(R.layout.end);
     }
 
-    public void end(View view) {
+    public void backToHome(View view) {
         Log.i("riddle", "Won game");
         ApplicationState.setGameIsActive(false);
         Intent intent = new Intent(this, StartActivity.class);
