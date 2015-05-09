@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.ecomhack.riddle.estimote.EstimoteService;
-import com.example.android.basicnotifications.R;
 
 /**
  * Created by stephanwels1 on 09.05.15.

@@ -2,12 +2,9 @@ package com.ecomhack.riddle;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-
 import com.ecomhack.riddle.R;
 
 public class RiddleActivity extends Activity {
@@ -41,23 +38,4 @@ public class RiddleActivity extends Activity {
             startActivity(intent);
         }
     }
-
-<<<<<<< HEAD
-=======
-
-    public void setTitle(String title) {
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(title);
-    }
-
-
-    public void setBody(String body) {
-
-    }
-
-
-    public void setReward(String reward) {
-
-    }
->>>>>>> merge stuff
 }
