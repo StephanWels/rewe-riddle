@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.ecomhack.riddle.ConstantsStateKeys;
 import com.estimote.sdk.Beacon;
+import com.estimote.sdk.Utils;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,8 +25,9 @@ public class NearbyProductDiscovery {
 
     static {
         beaconMajorToProduct = new HashMap<>();
-        beaconMajorToProduct.put(38286, "Product X");
-        beaconMajorToProduct.put(33910, "Product Y");
+        beaconMajorToProduct.put(38286, "Product Blue");
+        beaconMajorToProduct.put(33910, "Product Light Green");
+        beaconMajorToProduct.put(46775, "Product White");
     }
 
     private final Context context;
@@ -39,14 +41,18 @@ public class NearbyProductDiscovery {
         for (Beacon beacon : nearbyBeacons){
 
             if (beaconMajorToProduct.containsKey(beacon.getMajor())){
-                nearProducts.add(beaconMajorToProduct.get(beacon.getMajor()));
+                double distanceMeters = Utils.computeAccuracy(beacon);
+                if (distanceMeters<2){
+                    // If we are less than 2 meters away from the beacon, we got it
+                    nearProducts.add(beaconMajorToProduct.get(beacon.getMajor()));
+                }
             }
         }
         storeNearProducts(nearProducts);
     }
 
     private void storeNearProducts(Set<String> nearProducts) {
-        Log.i("riddle", "Nearby Products: " + nearProducts.toString());
+        Log.d("riddle", "Nearby Products: " + nearProducts.toString());
 
         SharedPreferences pref = context.getSharedPreferences("MyPref", 0); // 0 - for private mode
         SharedPreferences.Editor editor = pref.edit();
