@@ -47,16 +47,17 @@
         <activity
             android:name="com.ecomhack.riddle.StartActivity"
             android:label="@string/title_activity_sphere" >
+            <intent-filter>
+                                <action android:name="android.intent.action.MAIN" />
+
+                                <category android:name="android.intent.category.LAUNCHER" />
+                            </intent-filter>
 
         </activity>
         <activity
             android:name="com.ecomhack.riddle.correct.CorrectActivity"
             android:label="@string/title_activity_correct" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
