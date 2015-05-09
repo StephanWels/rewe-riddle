@@ -11,9 +11,17 @@ import android.view.View;
 import com.ecomhack.riddle.sphere.SphereTask;
 import com.example.android.basicnotifications.R;
 
+import java.util.Collections;
+import java.util.HashSet;
+
+import static com.ecomhack.riddle.ConstantsStateKeys.*;
+
 public class RiddleActivity extends Activity {
 
     private static final String TAG = "Riddle";
+
+    private final String productToFind = "Product White";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +31,11 @@ public class RiddleActivity extends Activity {
 
     public void checkWhetherCorrect(View view) {
         Log.i("riddle", "Am I right?");
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        if (pref.getStringSet(KEY_NEAR_PRODUCTS, new HashSet<String>()).contains(productToFind)){
+            Log.i("riddle", "YES!");
+        } else {
+            Log.i("riddle", "NO!");
+        }
     }
 }
