@@ -1,4 +1,3 @@
-/*
 package com.ecomhack.riddle.estimote;
 
 import java.util.List;
@@ -97,4 +96,3 @@ public class EstimoteManager {
         }
     }
 }
-*/
