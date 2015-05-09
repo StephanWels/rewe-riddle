@@ -52,6 +52,6 @@ public class SphereActivity extends Activity {
         editor.putInt(ConstantsStateKeys.KEY_SCORE, score + 100);
         editor.commit(); // commit changes
 
-        // new SphereTask().execute(null, null, null);
+        new SphereTask().execute(null, null, null);
     }
 }
