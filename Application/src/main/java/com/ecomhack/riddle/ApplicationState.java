@@ -8,10 +8,11 @@ import java.util.Set;
  */
 public class ApplicationState {
 
-    public static boolean gameIsActive = false;
-    public static Set<String> nearProducts = new HashSet<>();
+    private static boolean gameIsActive = false;
 
-    private static int currentRiddle;
+    private static Set<String> nearProducts = new HashSet<>();
+
+    private static int currentRiddle = 0;
 
 
     public static void nextRiddle(){
@@ -23,6 +24,27 @@ public class ApplicationState {
     }
 
     public static boolean existsNextRiddle(){
-        return currentRiddle<3;
+        return currentRiddle<2;
+    }
+
+    public static void startNewGame() {
+        gameIsActive=true;
+        currentRiddle=0;
+    }
+
+    public static void setNearProducts(Set<String> value) {
+        nearProducts = value;
+    }
+
+    public static Set<String> getNearProducts() {
+        return nearProducts;
+    }
+
+    public static boolean isGameActive() {
+        return gameIsActive;
+    }
+
+    public static void setGameIsActive(boolean value) {
+        gameIsActive = value;
     }
 }

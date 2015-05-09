@@ -46,7 +46,7 @@ public class WinActivity extends Activity {
 
     public void end(View view) {
         Log.i("riddle", "Won game");
-        ApplicationState.gameIsActive=false;
+        ApplicationState.setGameIsActive(false);
         Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
     }

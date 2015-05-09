@@ -26,7 +26,7 @@ public class RiddleActivity extends Activity {
 
     public void checkWhetherCorrect(View view) {
         Log.i("riddle", "Am I right?");
-        if (ApplicationState.nearProducts.contains(productToFind)) {
+        if (ApplicationState.getNearProducts().contains(productToFind)) {
             Log.i("riddle", "YES!");
             if (ApplicationState.existsNextRiddle()) {
                 ApplicationState.nextRiddle();

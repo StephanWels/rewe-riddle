@@ -48,7 +48,7 @@ public class StartActivity extends Activity {
 
     public void startBreakfastChallenge(View view) {
         Log.i("riddle", "start breakfast");
-        ApplicationState.gameIsActive=true;
+        ApplicationState.startNewGame();
         Intent intent = new Intent(this, RiddleActivity.class);
         startActivity(intent);
     }

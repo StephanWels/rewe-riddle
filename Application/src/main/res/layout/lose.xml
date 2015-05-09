@@ -61,7 +61,7 @@
             android:background="#ff9230"
             android:textColor="#ffff"
             android:layout_gravity="center_horizontal"
-            android:onClick="end"
+            android:onClick="startOver"
             android:layout_marginTop="20dp" /><![CDATA[
 
 

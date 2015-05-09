@@ -55,7 +55,7 @@ public class EstimoteManager {
                 @Override
                 public void onEnteredRegion(Region region, List<Beacon> beacons) {
                     Log.i("riddle", "found registration beacon.");
-                    if (!ApplicationState.gameIsActive){
+                    if (!ApplicationState.isGameActive()){
                         postNotificationIntent("Play with us!",
                                 "Tap to start the REWE RIDDLE", i);
                     }

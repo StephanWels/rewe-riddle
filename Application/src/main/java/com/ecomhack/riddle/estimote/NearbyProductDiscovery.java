@@ -54,7 +54,7 @@ public class NearbyProductDiscovery {
 
     private void storeNearProducts(Set<String> nearProducts) {
         Log.d("riddle", "Nearby Products: " + nearProducts.toString());
-        ApplicationState.nearProducts = nearProducts;
+        ApplicationState.setNearProducts(nearProducts);
     }
 
     public void close(){
