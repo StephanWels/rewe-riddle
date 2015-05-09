@@ -50,14 +50,6 @@ public class SphereActivity extends Activity {
     }
 
     public void callSphere(View view) throws ExecutionException, InterruptedException {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
-        SharedPreferences.Editor editor = pref.edit();
-
-        int score =  pref.getInt(ConstantsStateKeys.KEY_SCORE, 0);
-        Log.i("riddle", "Score: " + score);
-        editor.putInt(ConstantsStateKeys.KEY_SCORE, score + 100);
-        editor.commit(); // commit changes
-
         AuthResponse authResponse = new SphereAuthenticationTask().execute().get();
         QueryResult<QueryResult<Challenge>> challenges = new SphereChallengeQueryTask().execute(authResponse).get();
     }

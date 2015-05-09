@@ -11,9 +11,6 @@ import android.widget.TextView;
 import com.ecomhack.riddle.activityinterfaces.Riddle;
 import com.example.android.basicnotifications.R;
 
-import java.util.HashSet;
-
-import static com.ecomhack.riddle.ConstantsStateKeys.*;
 
 public class RiddleActivity extends Activity implements Riddle {
 
@@ -31,8 +28,7 @@ public class RiddleActivity extends Activity implements Riddle {
 
     public void checkWhetherCorrect(View view) {
         Log.i("riddle", "Am I right?");
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
-        if (pref.getStringSet(KEY_NEAR_PRODUCTS, new HashSet<String>()).contains(productToFind)){
+        if (ApplicationState.nearProducts.contains(productToFind)){
             Log.i("riddle", "YES!");
             Intent intent = new Intent(this, CorrectActivity.class);
             startActivity(intent);
