@@ -13,11 +13,9 @@ import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
-    Resources resources;
 
-    public DownloadImageTask(ImageView bmImage, Resources resources) {
+    public DownloadImageTask(ImageView bmImage) {
         this.bmImage = bmImage;
-        this.resources = resources;
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -38,6 +36,5 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected void onPostExecute(Bitmap result) {
         bmImage.setImageBitmap(result);
-//        bmImage.setMinimumHeight(300);
     }
 }

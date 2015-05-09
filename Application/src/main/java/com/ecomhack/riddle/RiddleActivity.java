@@ -6,14 +6,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+import com.ecomhack.riddle.activityinterfaces.Riddle;
 import com.example.android.basicnotifications.R;
 
 import java.util.HashSet;
 
 import static com.ecomhack.riddle.ConstantsStateKeys.*;
 
-public class RiddleActivity extends Activity {
+public class RiddleActivity extends Activity implements Riddle {
 
     private static final String TAG = "Riddle";
 
@@ -37,5 +39,21 @@ public class RiddleActivity extends Activity {
         } else {
             Log.i("riddle", "NO!");
         }
+    }
+
+    @Override
+    public void setTitle(String title) {
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(title);
+    }
+
+    @Override
+    public void setBody(String body) {
+
+    }
+
+    @Override
+    public void setReward(String reward) {
+
     }
 }

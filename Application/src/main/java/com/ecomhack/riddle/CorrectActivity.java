@@ -48,12 +48,9 @@ public class CorrectActivity extends Activity {
     }
 
     public void setPicture(final URL url) {
-
-        Dialog d = new Dialog(this);
         ImageView imageView = (ImageView) findViewById(R.id.imageView);
-       // imageView.setImageURI(Uri.parse("http://d9gkwhfwam31p.cloudfront.net/8750254/1326950_lightbox.png"));
 
-        new DownloadImageTask(imageView,getResources())
+        new DownloadImageTask(imageView)
                 .execute("https://d9gkwhfwam31p.cloudfront.net/8750254/1326950_lightbox.png");
 
 
