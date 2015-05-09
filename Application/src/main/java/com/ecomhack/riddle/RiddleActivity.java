@@ -8,8 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.basicnotifications.R;
-
+import com.ecomhack.riddle.R;
 
 public class RiddleActivity extends Activity {
 

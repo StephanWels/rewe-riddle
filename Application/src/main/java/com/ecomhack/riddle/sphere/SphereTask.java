@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
 
-import com.ecomhack.riddle.authentication.AuthResponse;
+import com.ecomhack.riddle.sphere.models.AuthResponse;
 import com.estimote.sdk.repackaged.gson_v2_3_1.com.google.gson.Gson;
 import com.ecomhack.riddle.R;
 
