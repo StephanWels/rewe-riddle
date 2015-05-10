@@ -3,6 +3,7 @@ package com.ecomhack.riddle.estimote;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,10 +11,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.ecomhack.riddle.ApplicationState;
 import com.ecomhack.riddle.StartActivity;
+import com.ecomhack.riddle.sphere.models.Product;
+import com.ecomhack.riddle.sphere.models.Variant;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
 import com.estimote.sdk.Region;
@@ -26,7 +30,6 @@ public class EstimoteManager {
     private static BeaconManager beaconManager;
     private static NotificationManager notificationManager;
     private static final int REGISTRATION_REGION_MAJOR = 25140;
-    private static final Region REGISTRATION_REGION = new Region("registration_region", null, REGISTRATION_REGION_MAJOR, null);
     private static final Region ALL_ESTIMOTE_BEACONS = new Region("all_beacons", null, null, null);
     private final NearbyProductDiscovery nearbyProductDiscovery;
 
@@ -53,10 +56,15 @@ public class EstimoteManager {
                 @Override
                 public void onEnteredRegion(Region region, List<Beacon> beacons) {
                     Log.i("riddle", "found registration beacon.");
-                    if (!ApplicationState.isGameActive()) {
-                        postNotificationIntent("Play with us!",
-                                "Tap to start the REWE RIDDLE", i);
+                    for (Beacon beacon : beacons){
+                        if (beacon.getMajor() == REGISTRATION_REGION_MAJOR){
+                            if (!ApplicationState.isGameActive()) {
+                                postNotificationIntent("Play with us!",
+                                        "Tap to start the REWE RIDDLE", i);
+                            }
+                        }
                     }
+                    checkWhetherCorrectBeaconIsNear();
                 }
 
                 // ... far away from us.
@@ -79,13 +87,36 @@ public class EstimoteManager {
                 public void onServiceReady() {
                     try {
                         // ... and start the monitoring
-                        beaconManager.startMonitoring(REGISTRATION_REGION);
+                        beaconManager.startMonitoring(ALL_ESTIMOTE_BEACONS);
                         beaconManager.startRanging(ALL_ESTIMOTE_BEACONS);
                     } catch (Exception e) {
                     }
                 }
             });
         } catch (Exception e) {
+        }
+    }
+
+
+    private void checkWhetherCorrectBeaconIsNear() {
+        Product currentRiddleObjective = ApplicationState.getCurrentRiddleObjective();
+        if (currentRiddleObjective != null){
+            Variant riddle = currentRiddleObjective.getRiddle();
+            if (riddle != null){
+                String productToFind=riddle.getBeacon();
+                Log.i("riddl", "looking for beacon " + productToFind);
+                if (ApplicationState.getProductsInRange().contains(productToFind)){
+                    NotificationCompat.Builder notificationBuilder =
+                            new NotificationCompat.Builder(currentContext)
+                                    .setSmallIcon(R.drawable.ic_stat_notification)
+                                    .setContentTitle("Riddle")
+                                    .setContentText("You are getting close")
+                                    .extend(
+                                            new NotificationCompat.WearableExtender().setHintShowBackgroundOnly(true));
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(currentContext);
+                    notificationManager.notify(1, notificationBuilder.build());
+                }
+            }
         }
     }
 
@@ -119,7 +150,8 @@ public class EstimoteManager {
             if (nearbyProductDiscovery != null) {
                 nearbyProductDiscovery.close();
             }
-            beaconManager.stopMonitoring(REGISTRATION_REGION);
+            beaconManager.stopMonitoring(ALL_ESTIMOTE_BEACONS);
+            beaconManager.stopRanging(ALL_ESTIMOTE_BEACONS);
             beaconManager.disconnect();
         } catch (Exception e) {
             Log.e("riddle", "Error during Estimote manager shutdown.", e);

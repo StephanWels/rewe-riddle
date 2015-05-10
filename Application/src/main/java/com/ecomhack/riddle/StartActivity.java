@@ -45,22 +45,6 @@ public class StartActivity extends Activity {
     }
 
     public void startBreakfastChallenge(View view) {
-        /*
-        viewIntent.putExtra(EXTRA_EVENT_ID, notificationId);
-        PendingIntent viewPendingIntent = PendingIntent.getActivity(this, 0, view, 0);
-
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_stat_notification)
-                        .setContentTitle("Riddle")
-                        .setContentText("Supermarket")
-                        .setContentIntent(viewPendingIntent);
-
-        NotificationManagerCompat notificationManager =
-                NotificationManagerCompat.from(this);
-
-        notificationManager.notify(notificationId, notificationBuilder.build());
-        */
         Log.i("riddle", "start breakfast");
 
         ApplicationState.startChallenge(BREAKFAST_CHALLENGE_ID);

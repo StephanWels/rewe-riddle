@@ -29,6 +29,8 @@ public class ApplicationState {
     private static Map<String, List<Product>> products = fetchChallenges();
 
     private static Set<String> nearProducts = new HashSet<>();
+    private static Set<String> productsInRange = new HashSet<>();
+
 
     private static int currentRiddle = 0;
     private static int numberTriesLeft = 3;
@@ -40,7 +42,12 @@ public class ApplicationState {
     }
 
     public static Product getCurrentRiddleObjective(){
-        return products.get(activeChallenge).get(currentRiddle);
+
+        List<Product> products = ApplicationState.products.get(activeChallenge);
+        if (products == null || products.isEmpty()){
+            return null;
+        }
+        return products.get(currentRiddle);
     }
 
     public static String getCurrentRiddleName() {
@@ -120,5 +127,13 @@ public class ApplicationState {
     public static void stopChallenge() {
         activeChallenge=null;
         reStartChallenge();
+    }
+
+    public static Set<String> getProductsInRange() {
+        return productsInRange;
+    }
+
+    public static void setProductsInRange(Set<String> productsInRange) {
+        ApplicationState.productsInRange = productsInRange;
     }
 }
