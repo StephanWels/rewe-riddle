@@ -39,10 +39,9 @@ public class NearbyProductDiscovery {
 
     public void discoverProducts(List<Beacon> nearbyBeacons){
         Set<String> nearProducts = new HashSet<>();
-        Set<String> reachableProducts = new HashSet<>();
         for (Beacon beacon : nearbyBeacons){
+
             if (beaconMajorToProduct.containsKey(beacon.getMajor())){
-                reachableProducts.add(beaconMajorToProduct.get(beacon.getMajor()));
                 double distanceMeters = Utils.computeAccuracy(beacon);
                 if (distanceMeters<2){
                     // If we are less than 2 meters away from the beacon, we got it
@@ -51,7 +50,6 @@ public class NearbyProductDiscovery {
             }
         }
         storeNearProducts(nearProducts);
-        ApplicationState.setProductsInRange(reachableProducts);
     }
 
     private void storeNearProducts(Set<String> nearProducts) {
@@ -59,12 +57,7 @@ public class NearbyProductDiscovery {
         ApplicationState.setNearProducts(nearProducts);
     }
 
-
     public void close(){
         storeNearProducts(new HashSet<String>());
-    }
-
-    public String getBeaconName(int major) {
-        return beaconMajorToProduct.get(major);
     }
 }
