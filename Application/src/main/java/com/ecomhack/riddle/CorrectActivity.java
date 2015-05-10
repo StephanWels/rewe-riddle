@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.ecomhack.riddle.DownloadImageTask;
 import com.ecomhack.riddle.R;
+import com.ecomhack.riddle.difficultytopointmapper.Mapper;
 import com.ecomhack.riddle.sound.SoundTask;
 import com.ecomhack.riddle.sphere.models.Product;
 
@@ -20,7 +21,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CorrectActivity extends Activity {
-
+    
+    TextView riddleRewardPointsText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,13 @@ public class CorrectActivity extends Activity {
         } catch (MalformedURLException murle) {
             Log.e("CorrectActivity","could not set image");
         }
+
+        riddleRewardPointsText = (TextView) findViewById(R.id.correctPoints);
+        //impressive work
+        setRewardPoints(Mapper.mapToString(ApplicationState.getCurrentRiddleObjective().getRiddle().getDifficulty().getLabel()));
+
+        ApplicationState.score += Mapper.maptoInt(ApplicationState.getCurrentRiddleObjective().getRiddle().getDifficulty().getLabel());
+
         setTitle(correctProduct.getName());
         new SoundTask(getApplicationContext(),R.raw.correct).execute();
 
@@ -89,5 +98,9 @@ public class CorrectActivity extends Activity {
 
         titleTextView.setText(title);
     }
+    public void setRewardPoints(final String points) {
+        // best of breed development
+        riddleRewardPointsText.setText(riddleRewardPointsText.getText().toString().replace("100", points));
 
+    }
 }

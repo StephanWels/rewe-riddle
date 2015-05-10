@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="You didn&apos;t earn any points!"
+            android:text="Final score 100 points!"
             android:id="@+id/losseMessage"
             android:textColor="#4C4A4C"
             android:layout_gravity="center_horizontal" />

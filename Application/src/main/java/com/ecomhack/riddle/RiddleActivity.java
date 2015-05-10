@@ -2,14 +2,20 @@ package com.ecomhack.riddle;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+
 import android.content.Context;
+import android.app.PendingIntent;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ecomhack.riddle.difficultytopointmapper.Mapper;
 import com.ecomhack.riddle.sound.SoundTask;
 
 public class RiddleActivity extends Activity {
@@ -18,17 +24,22 @@ public class RiddleActivity extends Activity {
 
     TextView riddleHeaderText;
     TextView riddleDescriptionText;
+    TextView riddleRewardPointsText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.riddle1);
+
         riddleHeaderText = (TextView) findViewById(R.id.riddleHeader);
         riddleHeaderText.setText(ApplicationState.getCurrentRiddleName());
         riddleDescriptionText = (TextView) findViewById(R.id.riddleQuestion);
         String riddleQuestion = ApplicationState.getCurrentRiddleObjective().getRiddle().getRiddle().de();
         riddleDescriptionText.setText(riddleQuestion);
         productToFind = ApplicationState.getCurrentRiddleObjective().getRiddle().getBeacon();
+        riddleRewardPointsText = (TextView) findViewById(R.id.riddlePointValue);
+        //impressive work
+        setRewardPoints(Mapper.mapToString(ApplicationState.getCurrentRiddleObjective().getRiddle().getDifficulty().getLabel()));
     }
 
     @Override
@@ -53,11 +64,13 @@ public class RiddleActivity extends Activity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+
     }
 
     public void checkWhetherCorrect(View view) {
         Log.i("riddle", "Am I right?");
-        if (ApplicationState.getNearProducts().contains(productToFind)) {   //&&
+        if (ApplicationState.getNearProducts().contains(productToFind)) { //
+
             Log.i("riddle", "YES!");
             Intent intent = new Intent(this, CorrectActivity.class);
             startActivity(intent);
@@ -86,5 +99,11 @@ public class RiddleActivity extends Activity {
                 startActivity(intent);
             }
         }
+    }
+
+    public void setRewardPoints(final String points) {
+        // best of breed development
+        riddleRewardPointsText.setText(riddleRewardPointsText.getText().toString().replace("100", points));
+
     }
 }
