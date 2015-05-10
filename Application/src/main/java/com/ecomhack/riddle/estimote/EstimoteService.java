@@ -18,7 +18,9 @@ public class EstimoteService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i("riddle", "Starting estimote service.");
         try {
-            estimoteManager = new EstimoteManager((NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE), this, intent);
+            if (estimoteManager==null){
+                estimoteManager = new EstimoteManager((NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE), this, intent);
+            }
         } catch (Exception e) {
             Log.e("riddle","Error during Estimote startup.", e);
         }

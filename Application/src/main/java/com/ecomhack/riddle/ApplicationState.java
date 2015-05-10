@@ -116,4 +116,9 @@ public class ApplicationState {
         currentRiddle=0;
         numberTriesLeft=3;
     }
+
+    public static void stopChallenge() {
+        activeChallenge=null;
+        reStartChallenge();
+    }
 }

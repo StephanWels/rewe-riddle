@@ -54,7 +54,7 @@
             android:layout_gravity="right"></FrameLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="Try again"
             android:id="@+id/tryAgainButton"
@@ -62,7 +62,19 @@
             android:textColor="#ffff"
             android:layout_gravity="center_horizontal"
             android:onClick="startOver"
-            android:layout_marginTop="20dp" /><![CDATA[
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Try a different Challenge"
+            android:id="@+id/button_exit"
+            android:background="#ff9230"
+            android:textColor="#ffff"
+            android:layout_gravity="center_horizontal"
+            android:onClick="backToMain"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.06" /><![CDATA[
 
 
 

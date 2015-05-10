@@ -2,6 +2,7 @@ package com.ecomhack.riddle;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,30 @@ public class RiddleActivity extends Activity {
         productToFind = ApplicationState.getCurrentRiddleObjective().getRiddle().getBeacon();
     }
 
+    @Override
+    public void onBackPressed() {
+        final Context currentContext = this;
+        new AlertDialog.Builder(this)
+                .setTitle("Exit Riddle!")
+                .setMessage("Do you want to quit your current riddl? Any progress will be lost!")
+                .setCancelable(true)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(currentContext, StartActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
     public void checkWhetherCorrect(View view) {
         Log.i("riddle", "Am I right?");
         if (ApplicationState.getNearProducts().contains(productToFind)) {
@@ -45,10 +70,10 @@ public class RiddleActivity extends Activity {
 
         } else {
             Log.i("riddle", "NO!");
-            new SoundTask(getApplicationContext(), R.raw.wrong).execute();
             ApplicationState.wrongAnswer();
             Log.i("riddle", ApplicationState.getNumberTriesLeft() + " tries left");
             if (ApplicationState.hasTriesLeft()) {
+                new SoundTask(getApplicationContext(), R.raw.wrong).execute();
                 int triesLeft = ApplicationState.getNumberTriesLeft();
                 new AlertDialog.Builder(this)
                         .setTitle("Nope!")

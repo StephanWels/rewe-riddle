@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 
@@ -11,7 +12,7 @@ import com.ecomhack.riddle.estimote.EstimoteService;
 
 public class StartActivity extends Activity {
 
-    private static final String BREAKFAST_CHALLENGE_ID ="945942bf-dbb5-4175-807d-0c40da4dcb7e";
+    private static final String BREAKFAST_CHALLENGE_ID = "945942bf-dbb5-4175-807d-0c40da4dcb7e";
 
     @Override
     protected void onStart() {
@@ -32,6 +33,7 @@ public class StartActivity extends Activity {
                         EstimoteService.class));
             }
         }
+        ApplicationState.stopChallenge();
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class StartActivity extends Activity {
         setContentView(R.layout.start);
     }
 
-    public void startBreakfastChallenge(View view){
+    public void startBreakfastChallenge(View view) {
         Log.i("riddle", "start breakfast");
 
         ApplicationState.startChallenge(BREAKFAST_CHALLENGE_ID);
