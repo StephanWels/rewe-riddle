@@ -21,7 +21,8 @@ public class VariantDeserializer implements JsonDeserializer<Variant> {
         JsonArray attributes = object.get("attributes").getAsJsonArray();
         LocalizedStrings riddle = attribute(context, attributes, "riddle", LocalizedStrings.class);
         String beacon = attribute(context, attributes, "beacon", String.class);
-        return new Variant(images, riddle, beacon);
+        Enumeration difficulty = attribute(context, attributes, "difficulty", Enumeration.class);
+        return new Variant(images, beacon, riddle, difficulty);
     }
 
     private List<Image> images(JsonDeserializationContext context, JsonObject object) {
