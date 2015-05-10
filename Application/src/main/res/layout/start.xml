@@ -6,6 +6,7 @@
     android:columnCount="1">
 
     <LinearLayout
+        android:id="@+id/challenges"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +17,8 @@
         android:background="#ffff"
         android:measureWithLargestChild="false"
         android:paddingEnd="5dp"
-        android:paddingStart="5dp">
+        android:paddingStart="5dp"
+        style="@style/ButtonStyle">
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,43 +42,10 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp" />
 
-        <Button
-            android:layout_width="390dp"
-            android:layout_height="70dp"
-            android:text="Breakfast Challenge"
-            android:id="@+id/firstTheme"
-            android:background="#ff9230"
-            android:textColor="#ffff"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            android:onClick="startBreakfastChallenge" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"></FrameLayout>
-
-        <Button
-            android:layout_width="390dp"
-            android:layout_height="70dp"
-            android:text="BBQ Challenge"
-            android:id="@+id/secondTheme"
-            android:background="#ff9230"
-            android:textColor="#ffff"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center" />
-
-        <Button
-            android:layout_width="390dp"
-            android:layout_height="70dp"
-            android:text="Veggie Challenge"
-            android:id="@+id/thirdTheme"
-            android:focusableInTouchMode="false"
-            android:textColor="#ffffff"
-            android:background="#ff9230"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center" />
-
     </LinearLayout>
 
 </GridLayout>

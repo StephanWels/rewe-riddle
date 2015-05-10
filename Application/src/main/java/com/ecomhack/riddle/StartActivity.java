@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.ecomhack.riddle.estimote.EstimoteService;
+import com.ecomhack.riddle.sphere.models.Challenge;
 
 public class StartActivity extends Activity {
 
@@ -39,14 +41,25 @@ public class StartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
+        LinearLayout view = (LinearLayout) findViewById(R.id.challenges);
+        for (Challenge challenge : ApplicationState.getChallenges()) {
+            addButtonToView(view, challenge);
+        }
     }
 
-    public void startBreakfastChallenge(View view) {
-        Log.i("riddle", "start breakfast");
-
-        ApplicationState.startChallenge(BREAKFAST_CHALLENGE_ID);
-
-        Intent intent = new Intent(this, RiddleActivity.class);
-        startActivity(intent);
+    private void addButtonToView(LinearLayout view, final Challenge challenge) {
+        Button button = new Button(getApplicationContext());
+        button.setText(challenge.getName().de());
+        //button.setBackgroundColor(0xFFff9230);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("riddle", "start breakfast");
+                ApplicationState.startChallenge(challenge.getId());
+                Intent intent = new Intent(v.getContext(), RiddleActivity.class);
+                startActivity(intent);
+            }
+        });
+        view.addView(button);
     }
 }
