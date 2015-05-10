@@ -3,9 +3,12 @@ package com.ecomhack.riddle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -19,16 +22,36 @@ public class RiddleActivity extends Activity {
     TextView riddleHeaderText;
     TextView riddleDescriptionText;
 
+    private int notificationId = 001;
+    private Intent viewIntent = new Intent(this, RiddleActivity.class);
+    private String EXTRA_EVENT_ID = "RiddleNotification";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.riddle1);
+
         riddleHeaderText = (TextView) findViewById(R.id.riddleHeader);
         riddleHeaderText.setText(ApplicationState.getCurrentRiddleName());
         riddleDescriptionText = (TextView) findViewById(R.id.riddleQuestion);
         String riddleQuestion = ApplicationState.getCurrentRiddleObjective().getRiddle().getRiddle().de();
         riddleDescriptionText.setText(riddleQuestion);
         productToFind = ApplicationState.getCurrentRiddleObjective().getRiddle().getBeacon();
+
+        viewIntent.putExtra(EXTRA_EVENT_ID, notificationId);
+        PendingIntent viewPendingIntent = PendingIntent.getActivity(this, 0, viewIntent, 0);
+
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_stat_notification)
+                        .setContentTitle("Riddle")
+                        .setContentText("Supermarket")
+                        .setContentIntent(viewPendingIntent);
+
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(this);
+
+        notificationManager.notify(notificationId, notificationBuilder.build());
     }
 
     @Override
