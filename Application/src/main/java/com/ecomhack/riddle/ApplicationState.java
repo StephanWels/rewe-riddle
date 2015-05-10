@@ -111,4 +111,9 @@ public class ApplicationState {
         }
         return challengeMap;
     }
+
+    public static void reStartChallenge() {
+        currentRiddle=0;
+        numberTriesLeft=3;
+    }
 }
