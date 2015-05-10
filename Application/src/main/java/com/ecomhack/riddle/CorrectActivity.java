@@ -71,8 +71,17 @@ public class CorrectActivity extends Activity {
 
     public void nextRiddle(View view) {
         Log.i("riddle", "next riddle");
-        Intent intent = new Intent(this, RiddleActivity.class);
-        startActivity(intent);
+        if (ApplicationState.existsNextRiddle()) {
+            ApplicationState.nextRiddle();
+            Intent intent = new Intent(this, RiddleActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, WinActivity.class);
+            startActivity(intent);
+        }
+
+
+
     }
 
     public void setTitle(String title) {

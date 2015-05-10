@@ -34,14 +34,8 @@ public class RiddleActivity extends Activity {
         Log.i("riddle", "Am I right?");
         if (ApplicationState.getNearProducts().contains(productToFind) ) {   //&&
             Log.i("riddle", "YES!");
-            if (ApplicationState.existsNextRiddle()) {
-                ApplicationState.nextRiddle();
-                Intent intent = new Intent(this, CorrectActivity.class);
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent(this, WinActivity.class);
-                startActivity(intent);
-            }
+            Intent intent = new Intent(this, CorrectActivity.class);
+            startActivity(intent);
 
         } else {
             Log.i("riddle", "NO!");
