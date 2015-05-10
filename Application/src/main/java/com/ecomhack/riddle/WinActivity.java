@@ -20,7 +20,7 @@ public class WinActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        new SoundTask(getApplicationContext(),R.raw.correct).execute();
+        new SoundTask(getApplicationContext(),R.raw.applause).execute();
     }
 
     @Override
