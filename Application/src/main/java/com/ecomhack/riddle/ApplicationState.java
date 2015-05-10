@@ -27,26 +27,32 @@ public class ApplicationState {
 
     private static List<Challenge> challenges = new ArrayList<>();
     private static Map<String, List<Product>> products = fetchChallenges();
+
     private static Set<String> nearProducts = new HashSet<>();
 
     private static int currentRiddle = 0;
     private static int numberTriesLeft = 3;
-
+    private static String activeChallenge = null;
 
     public static void nextRiddle(){
         currentRiddle++;
         numberTriesLeft=3;
     }
 
-    public static String getCurrentRiddle() {
-        return "Riddle " + currentRiddle;
+    public static Product getCurrentRiddleObjective(){
+        return products.get(activeChallenge).get(currentRiddle);
+    }
+
+    public static String getCurrentRiddleName() {
+        return "Riddle No " + (1+currentRiddle);
     }
 
     public static boolean existsNextRiddle(){
         return currentRiddle<2;
     }
 
-    public static void startNewGame() {
+    public static void startChallenge(String challengeId) {
+        activeChallenge = challengeId;
         gameIsActive=true;
         currentRiddle=0;
         numberTriesLeft=3;
@@ -104,5 +110,10 @@ public class ApplicationState {
             Log.e("riddle", "Could not fetch data from SPHERE.IO", e);
         }
         return challengeMap;
+    }
+
+    public static void reStartChallenge() {
+        currentRiddle=0;
+        numberTriesLeft=3;
     }
 }

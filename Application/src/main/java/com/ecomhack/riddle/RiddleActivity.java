@@ -16,13 +16,17 @@ public class RiddleActivity extends Activity {
     private final String productToFind = "Product White";
 
     TextView riddleHeaderText;
+    TextView riddleDescriptionText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.riddle1);
-        riddleHeaderText =  (TextView)findViewById(R.id.riddleHeader);
-        riddleHeaderText.setText(ApplicationState.getCurrentRiddle());
+        riddleHeaderText = (TextView) findViewById(R.id.riddleHeader);
+        riddleHeaderText.setText(ApplicationState.getCurrentRiddleName());
+        riddleDescriptionText = (TextView) findViewById(R.id.riddleQuestion);
+        String riddleQuestion = ApplicationState.getCurrentRiddleObjective().getRiddle().getRiddle().de();
+        riddleDescriptionText.setText(riddleQuestion);
     }
 
     public void checkWhetherCorrect(View view) {
@@ -40,15 +44,21 @@ public class RiddleActivity extends Activity {
 
         } else {
             Log.i("riddle", "NO!");
-            new SoundTask(getApplicationContext(),R.raw.wrong).execute();
+            new SoundTask(getApplicationContext(), R.raw.wrong).execute();
             ApplicationState.wrongAnswer();
             Log.i("riddle", ApplicationState.getNumberTriesLeft() + " tries left");
-            if (ApplicationState.hasTriesLeft()){
+            if (ApplicationState.hasTriesLeft()) {
                 int triesLeft = ApplicationState.getNumberTriesLeft();
                 new AlertDialog.Builder(this)
                         .setTitle("Nope!")
                         .setMessage("I cannot see the correct product beacon - You are not close enough :(. You have " + triesLeft + " tries left.")
                         .setCancelable(false)
+                        .setPositiveButton("Let me try again...", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             } else {

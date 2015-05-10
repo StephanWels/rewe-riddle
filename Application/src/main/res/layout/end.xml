@@ -66,7 +66,9 @@
             android:id="@+id/winningQRCode"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/qrcode"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:onClick="backToHome" />
 
         Button
             android:layout_width="390dp"

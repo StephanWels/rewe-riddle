@@ -46,6 +46,7 @@ public class LoseActivity extends Activity {
     public void startOver(View view) {
         Log.i("riddle", "Lost game");
         //TODO: set back to first riddle
+        ApplicationState.reStartChallenge();
         Intent intent = new Intent(this, RiddleActivity.class);
         startActivity(intent);
     }
