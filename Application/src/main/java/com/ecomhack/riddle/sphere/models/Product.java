@@ -9,6 +9,10 @@ public class Product {
         this.name = name;
     }
 
+    public Variant getRiddle(){
+        return masterVariant;
+    }
+
     @Override
     public String toString() {
         return "Product{" +

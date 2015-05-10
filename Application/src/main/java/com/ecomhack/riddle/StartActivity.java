@@ -8,18 +8,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.ecomhack.riddle.estimote.EstimoteService;
-import com.ecomhack.riddle.sphere.SphereAuthenticationTask;
-import com.ecomhack.riddle.sphere.SphereChallengeQueryTask;
-import com.ecomhack.riddle.sphere.SphereProductQueryTask;
-import com.ecomhack.riddle.sphere.models.AuthResponse;
-import com.ecomhack.riddle.sphere.models.Challenge;
-import com.ecomhack.riddle.sphere.models.Product;
-import com.ecomhack.riddle.sphere.models.QueryResult;
-
-import java.util.concurrent.ExecutionException;
 
 public class StartActivity extends Activity {
-    
+
+    private static final String BREAKFAST_CHALLENGE_ID ="945942bf-dbb5-4175-807d-0c40da4dcb7e";
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -49,7 +42,7 @@ public class StartActivity extends Activity {
     public void startBreakfastChallenge(View view){
         Log.i("riddle", "start breakfast");
 
-        ApplicationState.startNewGame();
+        ApplicationState.startChallenge(BREAKFAST_CHALLENGE_ID);
 
         Intent intent = new Intent(this, RiddleActivity.class);
         startActivity(intent);
