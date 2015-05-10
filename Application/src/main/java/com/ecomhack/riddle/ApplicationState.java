@@ -36,6 +36,8 @@ public class ApplicationState {
     private static int numberTriesLeft = 3;
     private static String activeChallenge = null;
 
+    public static int score = 0;
+
     public static void nextRiddle(){
         currentRiddle++;
         numberTriesLeft=3;
