@@ -13,6 +13,10 @@ public class Product {
         return masterVariant;
     }
 
+    public String getName() {
+        return name.de();
+    }
+
     @Override
     public String toString() {
         return "Product{" +

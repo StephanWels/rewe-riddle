@@ -35,8 +35,7 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:id="@+id/correctImage"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/frosties02" />
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
