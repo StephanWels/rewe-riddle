@@ -26,10 +26,6 @@ public class RiddleActivity extends Activity {
     TextView riddleDescriptionText;
     TextView riddleRewardPointsText;
 
-    private int notificationId = 001;
-    private Intent viewIntent = new Intent(this, RiddleActivity.class);
-    private String EXTRA_EVENT_ID = "RiddleNotification";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,24 +37,9 @@ public class RiddleActivity extends Activity {
         String riddleQuestion = ApplicationState.getCurrentRiddleObjective().getRiddle().getRiddle().de();
         riddleDescriptionText.setText(riddleQuestion);
         productToFind = ApplicationState.getCurrentRiddleObjective().getRiddle().getBeacon();
-        viewIntent.putExtra(EXTRA_EVENT_ID, notificationId);
         riddleRewardPointsText = (TextView) findViewById(R.id.riddlePointValue);
         //impressive work
         setRewardPoints(Mapper.mapToString(ApplicationState.getCurrentRiddleObjective().getRiddle().getDifficulty().getLabel()));
-
-        PendingIntent viewPendingIntent = PendingIntent.getActivity(this, 0, viewIntent, 0);
-
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_stat_notification)
-                        .setContentTitle("Riddle")
-                        .setContentText("Supermarket")
-                        .setContentIntent(viewPendingIntent);
-
-        NotificationManagerCompat notificationManager =
-                NotificationManagerCompat.from(this);
-
-        notificationManager.notify(notificationId, notificationBuilder.build());
     }
 
     @Override

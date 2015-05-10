@@ -1,10 +1,13 @@
 package com.ecomhack.riddle;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -42,6 +45,22 @@ public class StartActivity extends Activity {
     }
 
     public void startBreakfastChallenge(View view) {
+        /*
+        viewIntent.putExtra(EXTRA_EVENT_ID, notificationId);
+        PendingIntent viewPendingIntent = PendingIntent.getActivity(this, 0, view, 0);
+
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_stat_notification)
+                        .setContentTitle("Riddle")
+                        .setContentText("Supermarket")
+                        .setContentIntent(viewPendingIntent);
+
+        NotificationManagerCompat notificationManager =
+                NotificationManagerCompat.from(this);
+
+        notificationManager.notify(notificationId, notificationBuilder.build());
+        */
         Log.i("riddle", "start breakfast");
 
         ApplicationState.startChallenge(BREAKFAST_CHALLENGE_ID);
