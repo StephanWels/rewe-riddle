@@ -9,11 +9,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ecomhack.riddle.DownloadImageTask;
 import com.ecomhack.riddle.R;
 import com.ecomhack.riddle.sound.SoundTask;
+import com.ecomhack.riddle.sphere.models.Product;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class CorrectActivity extends Activity {
@@ -22,7 +25,15 @@ public class CorrectActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.correct);
+        final Product correctProduct = ApplicationState.getCurrentRiddleObjective();
+        try {
+            setPicture(new URL(correctProduct.getRiddle().getImages().get(0).getUrl()));
+        } catch (MalformedURLException murle) {
+            Log.e("CorrectActivity","could not set image");
+        }
+        setTitle(correctProduct.getName());
         new SoundTask(getApplicationContext(),R.raw.correct).execute();
+
     }
 
     @Override
@@ -35,7 +46,6 @@ public class CorrectActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        setPicture(null);
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -54,7 +64,7 @@ public class CorrectActivity extends Activity {
         ImageView imageView = (ImageView) findViewById(R.id.correctImage);
 
         new DownloadImageTask(imageView)
-                .execute("https://d9gkwhfwam31p.cloudfront.net/8750254/1326950_lightbox.png");
+                .execute(url.toString());
 
 
     }
@@ -63,6 +73,12 @@ public class CorrectActivity extends Activity {
         Log.i("riddle", "next riddle");
         Intent intent = new Intent(this, RiddleActivity.class);
         startActivity(intent);
+    }
+
+    public void setTitle(String title) {
+        TextView titleTextView = (TextView) findViewById(R.id.correctProductTitle);
+
+        titleTextView.setText(title);
     }
 
 }
