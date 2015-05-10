@@ -32,6 +32,7 @@ public class LoseActivity extends Activity {
         riddleRewardPointsText = (TextView) findViewById(R.id.losseMessage);
         //impressive work
         setRewardPoints(Integer.toString(ApplicationState.score));
+        ApplicationState.score = 0;
     }
 
     public void startOver(View view) {
