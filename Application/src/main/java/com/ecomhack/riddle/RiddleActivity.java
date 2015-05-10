@@ -69,7 +69,7 @@ public class RiddleActivity extends Activity {
 
     public void checkWhetherCorrect(View view) {
         Log.i("riddle", "Am I right?");
-        if (ApplicationState.getNearProducts().contains(productToFind)) {
+        if (ApplicationState.getNearProducts().contains(productToFind)) { //
 
             Log.i("riddle", "YES!");
             Intent intent = new Intent(this, CorrectActivity.class);
