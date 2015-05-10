@@ -38,6 +38,8 @@ public class CorrectActivity extends Activity {
         //impressive work
         setRewardPoints(Mapper.mapToString(ApplicationState.getCurrentRiddleObjective().getRiddle().getDifficulty().getLabel()));
 
+        ApplicationState.score += Mapper.maptoInt(ApplicationState.getCurrentRiddleObjective().getRiddle().getDifficulty().getLabel());
+
         setTitle(correctProduct.getName());
         new SoundTask(getApplicationContext(),R.raw.correct).execute();
 
