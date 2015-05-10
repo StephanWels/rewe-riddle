@@ -25,9 +25,9 @@ public class NearbyProductDiscovery {
 
     static {
         beaconMajorToProduct = new HashMap<>();
-        beaconMajorToProduct.put(38286, "Product Blue");
-        beaconMajorToProduct.put(33910, "Product Light Green");
-        beaconMajorToProduct.put(46775, "Product White");
+        beaconMajorToProduct.put(38286, "beacon_blue");
+        beaconMajorToProduct.put(33910, "beacon_light_green");
+        beaconMajorToProduct.put(46775, "beacon_white");
     }
 
     private final Context context;

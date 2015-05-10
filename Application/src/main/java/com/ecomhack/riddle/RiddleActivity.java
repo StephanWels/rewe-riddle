@@ -13,7 +13,7 @@ import com.ecomhack.riddle.sound.SoundTask;
 
 public class RiddleActivity extends Activity {
 
-    private final String productToFind = "Product White";
+    private String productToFind = null;
 
     TextView riddleHeaderText;
     TextView riddleDescriptionText;
@@ -27,6 +27,7 @@ public class RiddleActivity extends Activity {
         riddleDescriptionText = (TextView) findViewById(R.id.riddleQuestion);
         String riddleQuestion = ApplicationState.getCurrentRiddleObjective().getRiddle().getRiddle().de();
         riddleDescriptionText.setText(riddleQuestion);
+        productToFind = ApplicationState.getCurrentRiddleObjective().getRiddle().getBeacon();
     }
 
     public void checkWhetherCorrect(View view) {
