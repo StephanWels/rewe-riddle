@@ -79,6 +79,13 @@
             android:label="@string/title_activity_sphere"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name="com.ecomhack.riddle.SpecialDiscountActivity"
+            android:configChanges="orientation"
+            android:label="@string/title_activity_sphere"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

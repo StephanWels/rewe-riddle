@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.ecomhack.riddle.ApplicationState;
+import com.ecomhack.riddle.SpecialDiscountActivity;
 import com.ecomhack.riddle.StartActivity;
 import com.estimote.sdk.Beacon;
 import com.estimote.sdk.BeaconManager;
@@ -22,7 +23,6 @@ import com.ecomhack.riddle.R;
 
 public class EstimoteManager {
 
-    private static final int NOTIFICATION_ID = 123;
     private static BeaconManager beaconManager;
     private static NotificationManager notificationManager;
     private static final int REGISTRATION_REGION_MAJOR = 25140;
@@ -54,8 +54,11 @@ public class EstimoteManager {
                 public void onEnteredRegion(Region region, List<Beacon> beacons) {
                     Log.i("riddle", "found registration beacon.");
                     if (!ApplicationState.isGameActive()) {
+                        final Intent intent = new Intent(currentContext, StartActivity.class);
+                        intent.setAction(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
                         postNotificationIntent("Play with us!",
-                                "Tap to start the REWE RIDDLE", i);
+                                "Tap to start the REWE RIDDLE", intent, 123);
                     }
                 }
 
@@ -70,6 +73,17 @@ public class EstimoteManager {
                 @Override
                 public void onBeaconsDiscovered(Region region, List<Beacon> list) {
                     nearbyProductDiscovery.discoverProducts(list);
+                    if (!ApplicationState.getActiveWaitForAdBeacons().isEmpty()) {
+
+                        if (ApplicationState.getActiveWaitForAdBeacons().contains(NearbyProductDiscovery.SPECIAL_DISCOUNT_BEACON)) {
+                            Log.i("riddle", "activated special wait discount.");
+                            ApplicationState.addReceivedSpecialDiscount(NearbyProductDiscovery.SPECIAL_DISCOUNT_BEACON);
+                            final Intent intent = new Intent(currentContext, SpecialDiscountActivity.class);
+                            intent.setAction(Intent.ACTION_MAIN);
+                            postNotificationIntent("Alpia Vollmilch 20% !!!",
+                                    "You've received a special discount!", intent, 124);
+                        }
+                    }
                 }
             });
 
@@ -90,25 +104,22 @@ public class EstimoteManager {
     }
 
     // Pops a notification in the task bar
-    public void postNotificationIntent(String title, String msg, Intent i) {
-        final Intent intent = new Intent(currentContext, StartActivity.class);
-        intent.setAction(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+    public void postNotificationIntent(String title, String msg, Intent intent, int notificationId) {
         PendingIntent pendingIntent = PendingIntent.getActivity(currentContext, 0, intent, 0);
         Notification notification = new NotificationCompat.Builder(currentContext)
                 .setSmallIcon(R.drawable.ic_stat_notification)
                 .setAutoCancel(true)
                 .setLargeIcon(BitmapFactory.decodeResource(currentContext.getResources(), R.drawable.ic_launcher))
-                .setContentTitle("Play with us!")
+                .setContentTitle(title)
                 .setContentIntent(pendingIntent)
                 .setFullScreenIntent(pendingIntent, true)
-                .setContentText("Tap to start the REWE RIDDLE")
+                .setContentText(msg)
                 .setSubText("").build();
         notification.defaults |= Notification.DEFAULT_SOUND;
         notification.defaults |= Notification.DEFAULT_LIGHTS;
 
 
-        notificationManager.notify(NOTIFICATION_ID, notification);
+        notificationManager.notify(notificationId, notification);
 
     }
 

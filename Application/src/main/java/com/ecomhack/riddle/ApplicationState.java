@@ -14,6 +14,7 @@ import com.ecomhack.riddle.sphere.models.QueryResult;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,6 +30,11 @@ public class ApplicationState {
     private static Map<String, List<Product>> products = fetchChallenges();
 
     private static Set<String> nearProducts = new HashSet<>();
+
+    private static Map<String, List<Boolean>> nearWaitForAdBeacons = new HashMap<>();
+
+    private static Set<String> activeWaitForAdBeacons = new HashSet<>();
+    private static Set<String> activatedWaitForAdBeacons = new HashSet<>();
 
     private static int currentRiddle = 0;
     private static int numberTriesLeft = 3;
@@ -60,8 +66,57 @@ public class ApplicationState {
         numberTriesLeft=3;
     }
 
-    public static void setNearProducts(Set<String> value) {
-        nearProducts = value;
+    public static void setNearProducts(Set<String> closeBeacons) {
+
+        // store for each beacon how often they were detected in the last 30 detection periods (seconds)
+        for (String beacon : closeBeacons){
+            if (!nearWaitForAdBeacons.containsKey(beacon)){
+                nearWaitForAdBeacons.put(beacon, new LinkedList<Boolean>());
+            }
+            nearWaitForAdBeacons.get(beacon).add(true);
+        }
+        for (String beacon : nearWaitForAdBeacons.keySet()){
+            if (!closeBeacons.contains(beacon)){
+                nearWaitForAdBeacons.get(beacon).add(false);
+            }
+        }
+        for (String beacon : nearWaitForAdBeacons.keySet()){
+            if (nearWaitForAdBeacons.get(beacon).size()>20){
+                nearWaitForAdBeacons.get(beacon).remove(0);
+            }
+        }
+
+        for (Map.Entry<String, List<Boolean>> beaconEntry : nearWaitForAdBeacons.entrySet()){
+            int size = beaconEntry.getValue().size();
+            if (beaconEntry.getValue().get(size-1) || beaconEntry.getValue().get(size-2)){
+                nearProducts.add(beaconEntry.getKey());
+            }
+        }
+
+        activeWaitForAdBeacons.clear();
+        // a waitForAdBeacon is active, if it was seen at least in 25 of the last 30 detection periods
+        for (Map.Entry<String, List<Boolean>> beaconEntry : nearWaitForAdBeacons.entrySet()){
+            int activePeriodsCounter = 0;
+            for (Boolean active : beaconEntry.getValue()){
+                if (active){
+                    activePeriodsCounter++;
+                }
+            }
+            Log.i("riddle", "Set active count for beacon " + beaconEntry.getKey() + " to " + activePeriodsCounter );
+            if (activePeriodsCounter>=15){
+                activeWaitForAdBeacons.add(beaconEntry.getKey());
+            }
+        }
+        activeWaitForAdBeacons.removeAll(activatedWaitForAdBeacons);
+    }
+
+    public static Set<String> getActiveWaitForAdBeacons() {
+
+        return activeWaitForAdBeacons;
+    }
+
+    public static void addReceivedSpecialDiscount(String specialDiscountBeacon) {
+        activatedWaitForAdBeacons.add(specialDiscountBeacon);
     }
 
     public static List<Challenge> getChallenges() {

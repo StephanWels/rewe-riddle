@@ -20,6 +20,8 @@ import java.util.Set;
  */
 public class NearbyProductDiscovery {
 
+    public static String SPECIAL_DISCOUNT_BEACON="beacon_white_2";
+
     // should be retrieved dynamically from a database...
     private static HashMap<Integer, String> beaconMajorToProduct;
 
@@ -27,7 +29,8 @@ public class NearbyProductDiscovery {
         beaconMajorToProduct = new HashMap<>();
         beaconMajorToProduct.put(38286, "beacon_blue");
         beaconMajorToProduct.put(33910, "beacon_light_green");
-        beaconMajorToProduct.put(46775, "beacon_white");
+        beaconMajorToProduct.put(62556, "beacon_white_1");
+        beaconMajorToProduct.put(48735, "beacon_white_2");
     }
 
     private final Context context;
